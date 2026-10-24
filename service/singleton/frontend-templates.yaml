@@ -1,0 +1,37 @@
+- path: "admin-dist"
+  name: "WushangAdmin"
+  # The dashboard frontend is vendored in this repository (admin-frontend/)
+  # and built locally by script/build-frontends.sh, then embedded into the
+  # binary. Leaving version empty keeps fetch-frontends.sh from overwriting
+  # the embedded build with an upstream release.
+  repository: "https://github.com/CyL-Cly/wushang-panel"
+  author: "CyL-Cly"
+  version: ""
+  is_admin: true
+  is_official: true
+- path: "user-dist"
+  name: "Official"
+  repository: "https://github.com/hamster1963/nezha-dash-v2"
+  author: "hamster1963"
+  version: "v2.4.3"
+  is_official: true
+- path: "nezha-pixel-dist"
+  name: "Nezha-Pixel"
+  repository: "https://github.com/karllao/nezha-pixel"
+  author: "karllao"
+  version: "v1.6.0"
+- path: "nazhua-dist"
+  name: "Nazhua"
+  repository: "https://github.com/hi2shark/nazhua"
+  author: "hi2shark"
+  version: "v1.2.0"
+- path: "aobobo-dist"
+  name: "Aobobo"
+  repository: "https://github.com/hi2shark/aobobo"
+  author: "hi2shark"
+  version: "v1.5.1"
+- path: "nezha-ascii-dist"
+  name: "Nezha-ASCII"
+  repository: "https://github.com/hamster1963/nezha-ascii"
+  author: "hamster1963"
+  version: "v1.1.0"

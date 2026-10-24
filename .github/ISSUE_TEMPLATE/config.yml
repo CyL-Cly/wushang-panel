@@ -1,0 +1,7 @@
+contact_links:
+  - name: Report wushang-agent issues / 反馈 wushang-agent 问题
+    url: https://github.com/CyL-Cly/wushang-agent/issues
+    about: 请在这里创建 wushang-agent 的问题反馈。
+  - name: Report panel issues / 反馈面板问题
+    url: https://github.com/CyL-Cly/wushang-panel/issues
+    about: 面板本体与内置管理前端的问题都在这里反馈（本项目为二次开发版本，请勿向上游仓库提交）。

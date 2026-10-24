@@ -1,0 +1,79 @@
+wushang-panel
+=============
+
+This repository is a second-party (二次开发) build derived from the following
+upstream project:
+
+    Nezha Monitoring Dashboard
+    https://github.com/nezhahq/nezha
+    Licensed under the Apache License, Version 2.0 (see LICENSE)
+
+The dashboard frontend is derived from:
+
+    Nezha Admin Frontend
+    https://github.com/nezhahq/admin-frontend
+    Copyright 2024 nezhahq
+    Licensed under the Apache License, Version 2.0 (the frontend LICENSE is
+    retained in admin-frontend/LICENSE)
+
+Both LICENSE files are retained unmodified. This NOTICE records the
+modifications made for this build, as required by Section 4(b) of the
+Apache License, Version 2.0.
+
+Modifications made in this repository
+-------------------------------------
+
+1. Go module path
+   `github.com/nezhahq/nezha` -> `github.com/CyL-Cly/wushang-panel`
+   All internal import paths and `.goreleaser.yml` ldflags were rewritten
+   accordingly. Third-party dependencies under the `github.com/nezhahq/`
+   prefix (libdns-tencentcloud) are external modules and were left unchanged.
+
+2. Admin frontend vendored
+   The dashboard frontend now lives in `admin-frontend/` inside this
+   repository. `script/build-frontends.sh` builds `admin-frontend/` and
+   installs the output into `cmd/dashboard/admin-dist`, which is embedded
+   into the dashboard binary. The user frontend is no longer required to be
+   a local checkout; when absent, `script/fetch-frontends.sh` supplies the
+   prebuilt upstream release.
+
+3. Frontend bundle policy
+   `admin-frontend/vite.config.ts` keeps route-level lazy loading and removes
+   the catch-all `vendor` chunk. The additional hand-written
+   `motion`/`table`/`terminal`/`icons`/`ui-kit` groups added in the upstream
+   pull request were dropped; chunking is left to Rollup's dependency
+   analysis.
+
+4. Retained upstream performance changes
+   The following changes from nezhahq/nezha PR #1245 are kept in this build:
+   static asset compression and caching, static ETag with content digests,
+   SPA fallback 404 preservation, and the viewer-scoped server-list
+   singleflight with per-request slice cloning.
+
+5. Second-party identification
+   `service/singleton.BuildFlavor = "wushang-panel"` is exposed through the
+   settings API as `flavor`, and the admin UI footer labels the build
+   accordingly. The frontend template entry for `admin-dist` now points at
+   this repository and leaves `version` empty so `fetch-frontends.sh` does not
+   overwrite the embedded build with an upstream release.
+
+6. CI and repository automation
+   Upstream release, AtomGit/Gitee sync, contributors and CodeQL workflows
+   were removed, as were the vuepress-era helper scripts. Only
+   `.github/workflows/test.yml` remains, with the cross-repository agent
+   checkout repointed to `CyL-Cly/wushang-agent`.
+
+7. Documentation
+   README, issue templates and NOTICE updated to identify this as a
+   second-party build.
+
+Compliance notes
+----------------
+
+The `admin-dist` and `user-dist` directories are build artifacts and are
+excluded from version control (only `.gitkeep` files are tracked). They are
+produced at build time from the sources in this repository.
+
+This is an unofficial build. It is not affiliated with or endorsed by the
+Nezha Monitoring project, and changes made here are not contributed back
+upstream.

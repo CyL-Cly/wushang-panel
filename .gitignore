@@ -1,0 +1,38 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, build with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*~
+*.out
+*.pprof
+.idea
+/dist
+.DS_Store
+/cmd/dashboard/data
+/cmd/dashboard/main
+/cmd/dashboard/*-dist
+!/cmd/dashboard/admin-dist/.gitkeep
+!/cmd/dashboard/user-dist/.gitkeep
+/config.yml
+/resource/template/theme-custom
+/resource/static/custom
+/cmd/dashboard/docs
+.omo/
+
+# Vendored admin frontend build artifacts. admin-frontend/.gitignore covers
+# these for the nested checkout, but the files are also reachable from the
+# repository root, so ignore them here as well.
+/admin-frontend/node_modules
+/admin-frontend/dist
+/admin-frontend/dist-ssr
+/admin-frontend/*.local
+/admin-frontend/.vite
+/admin-frontend/test-results
+/admin-frontend/playwright-report
