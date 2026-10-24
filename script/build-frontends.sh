@@ -38,8 +38,11 @@ require_cmd() {
 
 install_dist() {
   local src="$1" target="$2"
-  rm -rf "$target"
-  cp -r "$src/dist" "$target"
+  # Keep the tracked .gitkeep so the embed directory still exists on a fresh
+  # clone; only the built assets are replaced.
+  rm -rf "${target:?}"/* "${target:?}"/.[!.]* 2>/dev/null || true
+  cp -r "$src/dist"/. "$target"/
+  touch "$target/.gitkeep"
   echo "installed $(basename "$target") from $src/dist"
 }
 
