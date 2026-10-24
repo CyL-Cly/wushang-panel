@@ -13,11 +13,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/goccy/go-json"
 	"github.com/CyL-Cly/wushang-panel/model"
 	"github.com/CyL-Cly/wushang-panel/pkg/agentcompatcontract"
 	"github.com/CyL-Cly/wushang-panel/proto"
 	serviceRPC "github.com/CyL-Cly/wushang-panel/service/rpc"
+	"github.com/goccy/go-json"
 	"github.com/stretchr/testify/require"
 )
 

@@ -9,9 +9,9 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/libdns/libdns"
 	"github.com/CyL-Cly/wushang-panel/model"
 	"github.com/CyL-Cly/wushang-panel/pkg/utils"
+	"github.com/libdns/libdns"
 )
 
 const (

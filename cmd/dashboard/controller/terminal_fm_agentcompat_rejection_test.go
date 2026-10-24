@@ -5,11 +5,11 @@ package controller
 import (
 	"testing"
 
-	"github.com/gin-gonic/gin"
 	"github.com/CyL-Cly/wushang-panel/model"
 	"github.com/CyL-Cly/wushang-panel/pkg/agentcompatcontract"
 	"github.com/CyL-Cly/wushang-panel/service/rpc"
 	"github.com/CyL-Cly/wushang-panel/service/singleton"
+	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/require"
 )
 

@@ -11,10 +11,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/goccy/go-json"
 	"github.com/CyL-Cly/wushang-panel/model"
 	"github.com/CyL-Cly/wushang-panel/pkg/agentcompatcontract"
 	"github.com/CyL-Cly/wushang-panel/proto"
+	"github.com/goccy/go-json"
 )
 
 func TestServeNATDefaultForwardsCapabilityHeaderAsOrdinaryData(t *testing.T) {

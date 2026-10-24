@@ -8,8 +8,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/jinzhu/copier"
 	"github.com/CyL-Cly/wushang-panel/pkg/tsdb"
+	"github.com/jinzhu/copier"
 
 	"github.com/CyL-Cly/wushang-panel/model"
 	pb "github.com/CyL-Cly/wushang-panel/proto"

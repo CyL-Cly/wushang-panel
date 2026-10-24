@@ -9,8 +9,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/gin-gonic/gin"
 	"github.com/CyL-Cly/wushang-panel/pkg/utils"
+	"github.com/gin-gonic/gin"
 )
 
 const (

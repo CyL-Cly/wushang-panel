@@ -8,12 +8,12 @@ import (
 
 	"github.com/goccy/go-json"
 
-	"github.com/hashicorp/go-uuid"
 	"github.com/CyL-Cly/wushang-panel/model"
 	"github.com/CyL-Cly/wushang-panel/pkg/utils"
 	"github.com/CyL-Cly/wushang-panel/proto"
 	serviceRPC "github.com/CyL-Cly/wushang-panel/service/rpc"
 	"github.com/CyL-Cly/wushang-panel/service/singleton"
+	"github.com/hashicorp/go-uuid"
 )
 
 func ServeNAT(w http.ResponseWriter, r *http.Request, natConfig *model.NAT) {

@@ -19,10 +19,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/gin-gonic/gin"
 	"github.com/CyL-Cly/wushang-panel/model"
 	"github.com/CyL-Cly/wushang-panel/pkg/utils"
 	"github.com/CyL-Cly/wushang-panel/service/singleton"
+	"github.com/gin-gonic/gin"
 )
 
 // fs.download_url / fs.upload_url 旁路通道。

@@ -3,8 +3,8 @@ package model
 import (
 	"time"
 
-	"github.com/gorilla/websocket"
 	"github.com/CyL-Cly/wushang-panel/pkg/utils"
+	"github.com/gorilla/websocket"
 	"gorm.io/gorm"
 )
 

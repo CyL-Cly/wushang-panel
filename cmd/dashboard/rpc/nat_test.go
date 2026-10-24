@@ -8,9 +8,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/goccy/go-json"
 	"github.com/CyL-Cly/wushang-panel/model"
 	"github.com/CyL-Cly/wushang-panel/proto"
+	"github.com/goccy/go-json"
 )
 
 func TestServeNATClosesHijackedResourcesWhenStreamDisappearsBeforeUserTransfer(t *testing.T) {

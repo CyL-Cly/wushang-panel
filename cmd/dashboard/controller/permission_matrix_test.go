@@ -8,9 +8,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gin-gonic/gin"
 	"github.com/CyL-Cly/wushang-panel/model"
 	"github.com/CyL-Cly/wushang-panel/service/singleton"
+	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/assert"
 )
 
