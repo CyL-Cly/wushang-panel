@@ -144,11 +144,14 @@ func TestListNotification_RedactsCredentials(t *testing.T) {
 	defer setupTenancyTest(t)()
 
 	n := model.Notification{
-		Common:        model.Common{UserID: 10},
-		Name:          "slack",
-		URL:           "https://hooks.slack.com/services/T/B/secret",
-		RequestHeader: `{"Authorization":"Bearer xxx"}`,
-		RequestBody:   `{"text":"#NEZHA#"}`,
+		Common:             model.Common{UserID: 10},
+		Name:               "slack",
+		URL:                "https://hooks.slack.com/services/T/B/secret",
+		RequestHeader:      `{"Authorization":"Bearer xxx"}`,
+		RequestBody:        `{"text":"#NEZHA#"}`,
+		DingtalkWebhookURL: "https://oapi.dingtalk.com/robot/send?access_token=dt-secret",
+		DingtalkSecret:     "SEC-dingtalk-secret",
+		ServerchanSendKey:  "SCT-serverchan-secret",
 	}
 	require.NoError(t, singleton.DB.Create(&n).Error)
 	singleton.NotificationShared.InsertForTest(&n)
@@ -160,6 +163,9 @@ func TestListNotification_RedactsCredentials(t *testing.T) {
 	require.Empty(t, out[0].URL, "url must be redacted in list response")
 	require.Empty(t, out[0].RequestHeader, "request_header must be redacted in list response")
 	require.Empty(t, out[0].RequestBody, "request_body must be redacted in list response")
+	require.Empty(t, out[0].DingtalkWebhookURL, "dingtalk_webhook_url must be redacted in list response")
+	require.Empty(t, out[0].DingtalkSecret, "dingtalk_secret must be redacted in list response")
+	require.Empty(t, out[0].ServerchanSendKey, "serverchan_sendkey must be redacted in list response")
 	require.Equal(t, "slack", out[0].Name, "non-secret fields must be preserved")
 
 	var stored model.Notification
@@ -280,4 +286,71 @@ func TestUpdateNotification_EmptyFieldsPreserveStored(t *testing.T) {
 		"empty submitted url must preserve stored value")
 	require.Equal(t, `{"Authorization":"keep"}`, after.RequestHeader,
 		"empty submitted request_header must preserve stored value")
+}
+
+func TestUpdateNotification_EmptyDingtalkSecretPreservesStored(t *testing.T) {
+	defer setupTenancyTest(t)()
+
+	existing := model.Notification{
+		Common:             model.Common{UserID: 10},
+		Name:               "ding",
+		Channel:            model.NotificationChannelDingtalk,
+		DingtalkWebhookURL: "https://oapi.dingtalk.com/robot/send?access_token=keep",
+		DingtalkSecret:     "SEC-keep-me",
+	}
+	require.NoError(t, singleton.DB.Create(&existing).Error)
+	singleton.NotificationShared.InsertForTest(&existing)
+
+	// 普通编辑（如改名）：列表接口已把 secret 脱敏为空串，前端回填空串提交。
+	c := ctxAsMemberWithBody(10, map[string]any{
+		"name":                 "ding-renamed",
+		"channel":              model.NotificationChannelDingtalk,
+		"dingtalk_webhook_url": "",
+		"dingtalk_secret":      "",
+		"skip_check":           true,
+	})
+	c.Params = gin.Params{{Key: "id", Value: itoa(existing.ID)}}
+	_, err := updateNotification(c)
+	require.NoError(t, err)
+
+	var after model.Notification
+	require.NoError(t, singleton.DB.First(&after, existing.ID).Error)
+	require.Equal(t, "ding-renamed", after.Name, "non-secret edits must apply")
+	require.Equal(t, "SEC-keep-me", after.DingtalkSecret,
+		"empty submitted dingtalk_secret must preserve stored value")
+	require.Equal(t, "https://oapi.dingtalk.com/robot/send?access_token=keep", after.DingtalkWebhookURL,
+		"empty submitted webhook url must preserve stored value")
+}
+
+func TestUpdateNotification_ClearDingtalkSecretRemovesSecret(t *testing.T) {
+	defer setupTenancyTest(t)()
+
+	existing := model.Notification{
+		Common:             model.Common{UserID: 10},
+		Name:               "ding",
+		Channel:            model.NotificationChannelDingtalk,
+		DingtalkWebhookURL: "https://oapi.dingtalk.com/robot/send?access_token=keep",
+		DingtalkSecret:     "SEC-keep-me",
+	}
+	require.NoError(t, singleton.DB.Create(&existing).Error)
+	singleton.NotificationShared.InsertForTest(&existing)
+
+	c := ctxAsMemberWithBody(10, map[string]any{
+		"name":                  "ding",
+		"channel":               model.NotificationChannelDingtalk,
+		"dingtalk_webhook_url":  "",
+		"dingtalk_secret":       "",
+		"clear_dingtalk_secret": true,
+		"skip_check":            true,
+	})
+	c.Params = gin.Params{{Key: "id", Value: itoa(existing.ID)}}
+	_, err := updateNotification(c)
+	require.NoError(t, err)
+
+	var after model.Notification
+	require.NoError(t, singleton.DB.First(&after, existing.ID).Error)
+	require.Empty(t, after.DingtalkSecret,
+		"clear_dingtalk_secret must remove the stored signing secret")
+	require.Equal(t, "https://oapi.dingtalk.com/robot/send?access_token=keep", after.DingtalkWebhookURL,
+		"clear_dingtalk_secret must not touch the webhook url")
 }

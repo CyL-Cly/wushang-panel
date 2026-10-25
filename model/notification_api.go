@@ -14,5 +14,8 @@ type NotificationForm struct {
 
 	DingtalkWebhookURL string `json:"dingtalk_webhook_url,omitempty"`
 	DingtalkSecret     string `json:"dingtalk_secret,omitempty"`
-	ServerchanSendKey  string `json:"serverchan_sendkey,omitempty"`
+	// ClearDingtalkSecret 为 true 时显式清除已保存的加签密钥（从加签切回关键词
+	// 模式）。普通编辑留空 dingtalk_secret 表示"不修改"，不会误清密钥。
+	ClearDingtalkSecret bool   `json:"clear_dingtalk_secret,omitempty" validate:"optional"`
+	ServerchanSendKey   string `json:"serverchan_sendkey,omitempty"`
 }

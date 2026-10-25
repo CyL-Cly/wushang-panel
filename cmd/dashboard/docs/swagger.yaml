@@ -1,5 +1,322 @@
 basePath: /api/v1
 definitions:
+  github_com_CyL-Cly_wushang-panel_model.CommonResponse-any:
+    properties:
+      data: {}
+      error:
+        type: string
+      success:
+        type: boolean
+    type: object
+  github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_APITokenView:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/model.APITokenView'
+        type: array
+      error:
+        type: string
+      success:
+        type: boolean
+    type: object
+  github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_AlertRule:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/model.AlertRule'
+        type: array
+      error:
+        type: string
+      success:
+        type: boolean
+    type: object
+  github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_BatchMoveServerResult:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/model.BatchMoveServerResult'
+        type: array
+      error:
+        type: string
+      success:
+        type: boolean
+    type: object
+  github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_DDNSProfile:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/model.DDNSProfile'
+        type: array
+      error:
+        type: string
+      success:
+        type: boolean
+    type: object
+  github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_NAT:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/model.NAT'
+        type: array
+      error:
+        type: string
+      success:
+        type: boolean
+    type: object
+  github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_Notification:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/model.Notification'
+        type: array
+      error:
+        type: string
+      success:
+        type: boolean
+    type: object
+  github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_NotificationGroupResponseItem:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/model.NotificationGroupResponseItem'
+        type: array
+      error:
+        type: string
+      success:
+        type: boolean
+    type: object
+  github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_Server:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/model.Server'
+        type: array
+      error:
+        type: string
+      success:
+        type: boolean
+    type: object
+  github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_ServerGroupResponseItem:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/model.ServerGroupResponseItem'
+        type: array
+      error:
+        type: string
+      success:
+        type: boolean
+    type: object
+  github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_ServerTransfer:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/model.ServerTransfer'
+        type: array
+      error:
+        type: string
+      success:
+        type: boolean
+    type: object
+  github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_Service:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/model.Service'
+        type: array
+      error:
+        type: string
+      success:
+        type: boolean
+    type: object
+  github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_ServiceInfos:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/model.ServiceInfos'
+        type: array
+      error:
+        type: string
+      success:
+        type: boolean
+    type: object
+  github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_User:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/model.User'
+        type: array
+      error:
+        type: string
+      success:
+        type: boolean
+    type: object
+  github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_string:
+    properties:
+      data:
+        items:
+          type: string
+        type: array
+      error:
+        type: string
+      success:
+        type: boolean
+    type: object
+  github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_uint64:
+    properties:
+      data:
+        items:
+          type: integer
+        type: array
+      error:
+        type: string
+      success:
+        type: boolean
+    type: object
+  github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_APITokenCreateResponse:
+    properties:
+      data:
+        $ref: '#/definitions/model.APITokenCreateResponse'
+      error:
+        type: string
+      success:
+        type: boolean
+    type: object
+  github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_LoginResponse:
+    properties:
+      data:
+        $ref: '#/definitions/model.LoginResponse'
+      error:
+        type: string
+      success:
+        type: boolean
+    type: object
+  github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_OnlineHistoryResponse:
+    properties:
+      data:
+        $ref: '#/definitions/model.OnlineHistoryResponse'
+      error:
+        type: string
+      success:
+        type: boolean
+    type: object
+  github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_Profile:
+    properties:
+      data:
+        $ref: '#/definitions/model.Profile'
+      error:
+        type: string
+      success:
+        type: boolean
+    type: object
+  github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_ServerMetricsResponse:
+    properties:
+      data:
+        $ref: '#/definitions/model.ServerMetricsResponse'
+      error:
+        type: string
+      success:
+        type: boolean
+    type: object
+  github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_ServerTaskResponse:
+    properties:
+      data:
+        $ref: '#/definitions/model.ServerTaskResponse'
+      error:
+        type: string
+      success:
+        type: boolean
+    type: object
+  github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_ServerTransfer:
+    properties:
+      data:
+        $ref: '#/definitions/model.ServerTransfer'
+      error:
+        type: string
+      success:
+        type: boolean
+    type: object
+  github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_ServiceHistoryResponse:
+    properties:
+      data:
+        $ref: '#/definitions/model.ServiceHistoryResponse'
+      error:
+        type: string
+      success:
+        type: boolean
+    type: object
+  github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_ServiceResponse:
+    properties:
+      data:
+        $ref: '#/definitions/model.ServiceResponse'
+      error:
+        type: string
+      success:
+        type: boolean
+    type: object
+  github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_SettingResponse:
+    properties:
+      data:
+        $ref: '#/definitions/model.SettingResponse'
+      error:
+        type: string
+      success:
+        type: boolean
+    type: object
+  github_com_CyL-Cly_wushang-panel_model.CommonResponse-string:
+    properties:
+      data:
+        type: string
+      error:
+        type: string
+      success:
+        type: boolean
+    type: object
+  github_com_CyL-Cly_wushang-panel_model.CommonResponse-uint64:
+    properties:
+      data:
+        type: integer
+      error:
+        type: string
+      success:
+        type: boolean
+    type: object
+  github_com_CyL-Cly_wushang-panel_model.PaginatedResponse-array_model_OnlineUser-model_OnlineUser:
+    properties:
+      data:
+        $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.Value-array_model_OnlineUser'
+      error:
+        type: string
+      success:
+        type: boolean
+    type: object
+  github_com_CyL-Cly_wushang-panel_model.PaginatedResponse-array_model_WAFApiMock-model_WAFApiMock:
+    properties:
+      data:
+        $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.Value-array_model_WAFApiMock'
+      error:
+        type: string
+      success:
+        type: boolean
+    type: object
+  github_com_CyL-Cly_wushang-panel_model.Value-array_model_OnlineUser:
+    properties:
+      pagination:
+        $ref: '#/definitions/model.Pagination'
+      value:
+        items:
+          $ref: '#/definitions/model.OnlineUser'
+        type: array
+    type: object
+  github_com_CyL-Cly_wushang-panel_model.Value-array_model_WAFApiMock:
+    properties:
+      pagination:
+        $ref: '#/definitions/model.Pagination'
+      value:
+        items:
+          $ref: '#/definitions/model.WAFApiMock'
+        type: array
+    type: object
   model.APITokenCreateRequest:
     properties:
       expires_in_days:
@@ -39,6 +356,11 @@ definitions:
         type: array
       token:
         type: string
+    required:
+    - id
+    - name
+    - scopes
+    - token
     type: object
   model.APITokenView:
     properties:
@@ -62,6 +384,11 @@ definitions:
         items:
           type: integer
         type: array
+    required:
+    - created_at
+    - id
+    - name
+    - scopes
     type: object
   model.AlertRule:
     properties:
@@ -69,11 +396,6 @@ definitions:
         type: string
       enable:
         type: boolean
-      fail_trigger_tasks:
-        description: 失败时执行的触发任务id
-        items:
-          type: integer
-        type: array
       id:
         type: integer
       name:
@@ -81,11 +403,6 @@ definitions:
       notification_group_id:
         description: 该报警规则所在的通知组
         type: integer
-      recover_trigger_tasks:
-        description: 恢复时执行的触发任务id
-        items:
-          type: integer
-        type: array
       rules:
         items:
           $ref: '#/definitions/model.Rule'
@@ -95,26 +412,21 @@ definitions:
         type: integer
       updated_at:
         type: string
+    required:
+    - name
+    - notification_group_id
+    - rules
+    - trigger_mode
     type: object
   model.AlertRuleForm:
     properties:
       enable:
         type: boolean
-      fail_trigger_tasks:
-        description: 失败时触发的任务id
-        items:
-          type: integer
-        type: array
       name:
         minLength: 1
         type: string
       notification_group_id:
         type: integer
-      recover_trigger_tasks:
-        description: 恢复时触发的任务id
-        items:
-          type: integer
-        type: array
       rules:
         items:
           $ref: '#/definitions/model.Rule'
@@ -122,6 +434,11 @@ definitions:
       trigger_mode:
         default: 0
         type: integer
+    required:
+    - name
+    - notification_group_id
+    - rules
+    - trigger_mode
     type: object
   model.BatchMoveServerForm:
     properties:
@@ -145,6 +462,9 @@ definitions:
         $ref: '#/definitions/model.BatchMoveServerResultStatus'
       transfer_id:
         type: integer
+    required:
+    - server_id
+    - status
     type: object
   model.BatchMoveServerResultStatus:
     enum:
@@ -162,298 +482,6 @@ definitions:
     - BatchMoveServerResultServerNotFound
     - BatchMoveServerResultSameOwner
     - BatchMoveServerResultAgentTooOld
-  model.CommonResponse-any:
-    properties:
-      data: {}
-      error:
-        type: string
-      success:
-        type: boolean
-    type: object
-  model.CommonResponse-array_model_APITokenView:
-    properties:
-      data:
-        items:
-          $ref: '#/definitions/model.APITokenView'
-        type: array
-      error:
-        type: string
-      success:
-        type: boolean
-    type: object
-  model.CommonResponse-array_model_AlertRule:
-    properties:
-      data:
-        items:
-          $ref: '#/definitions/model.AlertRule'
-        type: array
-      error:
-        type: string
-      success:
-        type: boolean
-    type: object
-  model.CommonResponse-array_model_BatchMoveServerResult:
-    properties:
-      data:
-        items:
-          $ref: '#/definitions/model.BatchMoveServerResult'
-        type: array
-      error:
-        type: string
-      success:
-        type: boolean
-    type: object
-  model.CommonResponse-array_model_Cron:
-    properties:
-      data:
-        items:
-          $ref: '#/definitions/model.Cron'
-        type: array
-      error:
-        type: string
-      success:
-        type: boolean
-    type: object
-  model.CommonResponse-array_model_DDNSProfile:
-    properties:
-      data:
-        items:
-          $ref: '#/definitions/model.DDNSProfile'
-        type: array
-      error:
-        type: string
-      success:
-        type: boolean
-    type: object
-  model.CommonResponse-array_model_NAT:
-    properties:
-      data:
-        items:
-          $ref: '#/definitions/model.NAT'
-        type: array
-      error:
-        type: string
-      success:
-        type: boolean
-    type: object
-  model.CommonResponse-array_model_Notification:
-    properties:
-      data:
-        items:
-          $ref: '#/definitions/model.Notification'
-        type: array
-      error:
-        type: string
-      success:
-        type: boolean
-    type: object
-  model.CommonResponse-array_model_NotificationGroupResponseItem:
-    properties:
-      data:
-        items:
-          $ref: '#/definitions/model.NotificationGroupResponseItem'
-        type: array
-      error:
-        type: string
-      success:
-        type: boolean
-    type: object
-  model.CommonResponse-array_model_Server:
-    properties:
-      data:
-        items:
-          $ref: '#/definitions/model.Server'
-        type: array
-      error:
-        type: string
-      success:
-        type: boolean
-    type: object
-  model.CommonResponse-array_model_ServerGroupResponseItem:
-    properties:
-      data:
-        items:
-          $ref: '#/definitions/model.ServerGroupResponseItem'
-        type: array
-      error:
-        type: string
-      success:
-        type: boolean
-    type: object
-  model.CommonResponse-array_model_ServerTransfer:
-    properties:
-      data:
-        items:
-          $ref: '#/definitions/model.ServerTransfer'
-        type: array
-      error:
-        type: string
-      success:
-        type: boolean
-    type: object
-  model.CommonResponse-array_model_Service:
-    properties:
-      data:
-        items:
-          $ref: '#/definitions/model.Service'
-        type: array
-      error:
-        type: string
-      success:
-        type: boolean
-    type: object
-  model.CommonResponse-array_model_ServiceInfos:
-    properties:
-      data:
-        items:
-          $ref: '#/definitions/model.ServiceInfos'
-        type: array
-      error:
-        type: string
-      success:
-        type: boolean
-    type: object
-  model.CommonResponse-array_model_User:
-    properties:
-      data:
-        items:
-          $ref: '#/definitions/model.User'
-        type: array
-      error:
-        type: string
-      success:
-        type: boolean
-    type: object
-  model.CommonResponse-array_string:
-    properties:
-      data:
-        items:
-          type: string
-        type: array
-      error:
-        type: string
-      success:
-        type: boolean
-    type: object
-  model.CommonResponse-array_uint64:
-    properties:
-      data:
-        items:
-          type: integer
-        type: array
-      error:
-        type: string
-      success:
-        type: boolean
-    type: object
-  model.CommonResponse-model_APITokenCreateResponse:
-    properties:
-      data:
-        $ref: '#/definitions/model.APITokenCreateResponse'
-      error:
-        type: string
-      success:
-        type: boolean
-    type: object
-  model.CommonResponse-model_LoginResponse:
-    properties:
-      data:
-        $ref: '#/definitions/model.LoginResponse'
-      error:
-        type: string
-      success:
-        type: boolean
-    type: object
-  model.CommonResponse-model_OnlineHistoryResponse:
-    properties:
-      data:
-        $ref: '#/definitions/model.OnlineHistoryResponse'
-      error:
-        type: string
-      success:
-        type: boolean
-    type: object
-  model.CommonResponse-model_Profile:
-    properties:
-      data:
-        $ref: '#/definitions/model.Profile'
-      error:
-        type: string
-      success:
-        type: boolean
-    type: object
-  model.CommonResponse-model_ServerMetricsResponse:
-    properties:
-      data:
-        $ref: '#/definitions/model.ServerMetricsResponse'
-      error:
-        type: string
-      success:
-        type: boolean
-    type: object
-  model.CommonResponse-model_ServerTaskResponse:
-    properties:
-      data:
-        $ref: '#/definitions/model.ServerTaskResponse'
-      error:
-        type: string
-      success:
-        type: boolean
-    type: object
-  model.CommonResponse-model_ServerTransfer:
-    properties:
-      data:
-        $ref: '#/definitions/model.ServerTransfer'
-      error:
-        type: string
-      success:
-        type: boolean
-    type: object
-  model.CommonResponse-model_ServiceHistoryResponse:
-    properties:
-      data:
-        $ref: '#/definitions/model.ServiceHistoryResponse'
-      error:
-        type: string
-      success:
-        type: boolean
-    type: object
-  model.CommonResponse-model_ServiceResponse:
-    properties:
-      data:
-        $ref: '#/definitions/model.ServiceResponse'
-      error:
-        type: string
-      success:
-        type: boolean
-    type: object
-  model.CommonResponse-model_SettingResponse:
-    properties:
-      data:
-        $ref: '#/definitions/model.SettingResponse'
-      error:
-        type: string
-      success:
-        type: boolean
-    type: object
-  model.CommonResponse-string:
-    properties:
-      data:
-        type: string
-      error:
-        type: string
-      success:
-        type: boolean
-    type: object
-  model.CommonResponse-uint64:
-    properties:
-      data:
-        type: integer
-      error:
-        type: string
-      success:
-        type: boolean
-    type: object
   model.CreateFMResponse:
     properties:
       session_id:
@@ -467,71 +495,6 @@ definitions:
         type: string
       session_id:
         type: string
-    type: object
-  model.Cron:
-    properties:
-      command:
-        type: string
-      cover:
-        description: 计划任务覆盖范围 (0:仅覆盖特定服务器 1:仅忽略特定服务器 2:由触发该计划任务的服务器执行)
-        type: integer
-      created_at:
-        type: string
-      cron_job_id:
-        type: integer
-      id:
-        type: integer
-      last_executed_at:
-        description: 最后一次执行时间
-        type: string
-      last_result:
-        description: 最后一次执行结果
-        type: boolean
-      name:
-        type: string
-      notification_group_id:
-        description: 指定通知方式的分组
-        type: integer
-      push_successful:
-        description: 推送成功的通知
-        type: boolean
-      scheduler:
-        description: 分钟 小时 天 月 星期
-        type: string
-      servers:
-        items:
-          type: integer
-        type: array
-      task_type:
-        description: 0:计划任务 1:触发任务
-        type: integer
-      updated_at:
-        type: string
-    type: object
-  model.CronForm:
-    properties:
-      command:
-        type: string
-      cover:
-        default: 0
-        type: integer
-      name:
-        minLength: 1
-        type: string
-      notification_group_id:
-        type: integer
-      push_successful:
-        type: boolean
-      scheduler:
-        type: string
-      servers:
-        items:
-          type: integer
-        type: array
-      task_type:
-        default: 0
-        description: 0:计划任务 1:触发任务
-        type: integer
     type: object
   model.CycleTransferStats:
     properties:
@@ -558,6 +521,12 @@ definitions:
           format: int64
           type: integer
         type: object
+    required:
+    - from
+    - max
+    - min
+    - name
+    - to
     type: object
   model.DDNSForm:
     properties:
@@ -630,6 +599,11 @@ definitions:
         type: integer
       webhook_url:
         type: string
+    required:
+    - domains
+    - max_retries
+    - name
+    - provider
     type: object
   model.DailyOnlineStat:
     properties:
@@ -637,6 +611,9 @@ definitions:
         type: string
       online_seconds:
         type: integer
+    required:
+    - date
+    - online_seconds
     type: object
   model.DataPoint:
     properties:
@@ -647,6 +624,10 @@ definitions:
         type: integer
       ts:
         type: integer
+    required:
+    - delay
+    - status
+    - ts
     type: object
   model.FrontendTemplate:
     properties:
@@ -673,6 +654,8 @@ definitions:
         type: integer
       utilization:
         type: number
+    required:
+    - utilization
     type: object
   model.GeoIP:
     properties:
@@ -794,6 +777,12 @@ definitions:
         type: integer
       updated_at:
         type: string
+    required:
+    - domain
+    - enabled
+    - host
+    - name
+    - server_id
     type: object
   model.NATForm:
     properties:
@@ -811,7 +800,14 @@ definitions:
     type: object
   model.Notification:
     properties:
+      channel:
+        description: 0:webhook 1:钉钉 2:Server酱
+        type: integer
       created_at:
+        type: string
+      dingtalk_secret:
+        type: string
+      dingtalk_webhook_url:
         type: string
       format_metric_units:
         type: boolean
@@ -827,15 +823,39 @@ definitions:
         type: integer
       request_type:
         type: integer
+      serverchan_sendkey:
+        type: string
       updated_at:
         type: string
       url:
         type: string
       verify_tls:
         type: boolean
+    required:
+    - channel
+    - dingtalk_secret
+    - dingtalk_webhook_url
+    - name
+    - request_body
+    - request_header
+    - request_method
+    - request_type
+    - serverchan_sendkey
+    - url
     type: object
   model.NotificationForm:
     properties:
+      channel:
+        type: integer
+      clear_dingtalk_secret:
+        description: |-
+          ClearDingtalkSecret 为 true 时显式清除已保存的加签密钥（从加签切回关键词
+          模式）。普通编辑留空 dingtalk_secret 表示"不修改"，不会误清密钥。
+        type: boolean
+      dingtalk_secret:
+        type: string
+      dingtalk_webhook_url:
+        type: string
       format_metric_units:
         type: boolean
       name:
@@ -849,6 +869,8 @@ definitions:
         type: integer
       request_type:
         type: integer
+      serverchan_sendkey:
+        type: string
       skip_check:
         type: boolean
       url:
@@ -866,6 +888,8 @@ definitions:
         type: string
       updated_at:
         type: string
+    required:
+    - name
     type: object
   model.NotificationGroupForm:
     properties:
@@ -876,6 +900,9 @@ definitions:
         items:
           type: integer
         type: array
+    required:
+    - name
+    - notifications
     type: object
   model.NotificationGroupResponseItem:
     properties:
@@ -885,6 +912,9 @@ definitions:
         items:
           type: integer
         type: array
+    required:
+    - group
+    - notifications
     type: object
   model.Oauth2LoginResponse:
     properties:
@@ -929,6 +959,20 @@ definitions:
         type: string
       window_start:
         type: string
+    required:
+    - currently_online
+    - daily
+    - days
+    - max_days
+    - online_rate
+    - periods
+    - server_id
+    - server_name
+    - timezone
+    - total_online_seconds
+    - tz_offset
+    - window_end
+    - window_start
     type: object
   model.OnlinePeriod:
     properties:
@@ -938,6 +982,10 @@ definitions:
         type: boolean
       start:
         type: string
+    required:
+    - end
+    - ongoing
+    - start
     type: object
   model.OnlineUser:
     properties:
@@ -947,24 +995,6 @@ definitions:
         type: string
       user_id:
         type: integer
-    type: object
-  model.PaginatedResponse-array_model_OnlineUser-model_OnlineUser:
-    properties:
-      data:
-        $ref: '#/definitions/model.Value-array_model_OnlineUser'
-      error:
-        type: string
-      success:
-        type: boolean
-    type: object
-  model.PaginatedResponse-array_model_WAFApiMock-model_WAFApiMock:
-    properties:
-      data:
-        $ref: '#/definitions/model.Value-array_model_WAFApiMock'
-      error:
-        type: string
-      success:
-        type: boolean
     type: object
   model.Pagination:
     properties:
@@ -997,6 +1027,8 @@ definitions:
         type: string
       username:
         type: string
+    required:
+    - role
     type: object
   model.ProfileForm:
     properties:
@@ -1059,6 +1091,9 @@ definitions:
           net_all_speed、transfer_in、transfer_out、transfer_all、offline
           transfer_in_cycle、transfer_out_cycle、transfer_all_cycle
         type: string
+    required:
+    - cover
+    - type
     type: object
   model.SensorTemperature:
     properties:
@@ -1114,6 +1149,9 @@ definitions:
         type: string
       uuid:
         type: string
+    required:
+    - display_index
+    - name
     type: object
   model.ServerConfigForm:
     properties:
@@ -1170,6 +1208,8 @@ definitions:
         type: string
       updated_at:
         type: string
+    required:
+    - name
     type: object
   model.ServerGroupForm:
     properties:
@@ -1180,6 +1220,9 @@ definitions:
         items:
           type: integer
         type: array
+    required:
+    - name
+    - servers
     type: object
   model.ServerGroupResponseItem:
     properties:
@@ -1189,6 +1232,9 @@ definitions:
         items:
           type: integer
         type: array
+    required:
+    - group
+    - servers
     type: object
   model.ServerMetricsDataPoint:
     properties:
@@ -1196,6 +1242,9 @@ definitions:
         type: integer
       value:
         type: number
+    required:
+    - ts
+    - value
     type: object
   model.ServerMetricsResponse:
     properties:
@@ -1209,6 +1258,10 @@ definitions:
         type: integer
       server_name:
         type: string
+    required:
+    - data_points
+    - metric
+    - server_id
     type: object
   model.ServerServiceStats:
     properties:
@@ -1218,6 +1271,9 @@ definitions:
         type: string
       stats:
         $ref: '#/definitions/model.ServiceHistorySummary'
+    required:
+    - server_id
+    - stats
     type: object
   model.ServerTaskResponse:
     properties:
@@ -1256,6 +1312,12 @@ definitions:
         type: integer
       updated_at:
         type: string
+    required:
+    - from_user_id
+    - initiator_id
+    - server_id
+    - status
+    - to_user_id
     type: object
   model.ServerTransferStatus:
     enum:
@@ -1283,13 +1345,6 @@ definitions:
         type: integer
       duration:
         type: integer
-      enable_trigger_task:
-        type: boolean
-      fail_trigger_tasks:
-        description: 失败时执行的触发任务id
-        items:
-          type: integer
-        type: array
       hide_for_guest:
         description: 对游客隐藏
         type: boolean
@@ -1308,11 +1363,6 @@ definitions:
         type: integer
       notify:
         type: boolean
-      recover_trigger_tasks:
-        description: 恢复时执行的触发任务id
-        items:
-          type: integer
-        type: array
       skip_servers:
         additionalProperties:
           type: boolean
@@ -1323,6 +1373,17 @@ definitions:
         type: integer
       updated_at:
         type: string
+    required:
+    - cover
+    - display_index
+    - duration
+    - max_latency
+    - min_latency
+    - name
+    - notification_group_id
+    - skip_servers
+    - target
+    - type
     type: object
   model.ServiceForm:
     properties:
@@ -1334,12 +1395,6 @@ definitions:
         type: integer
       duration:
         type: integer
-      enable_trigger_task:
-        type: boolean
-      fail_trigger_tasks:
-        items:
-          type: integer
-        type: array
       hide_for_guest:
         type: boolean
       latency_notify:
@@ -1357,10 +1412,6 @@ definitions:
         type: integer
       notify:
         type: boolean
-      recover_trigger_tasks:
-        items:
-          type: integer
-        type: array
       skip_servers:
         additionalProperties:
           type: boolean
@@ -1380,6 +1431,9 @@ definitions:
         type: integer
       service_name:
         type: string
+    required:
+    - servers
+    - service_id
     type: object
   model.ServiceHistorySummary:
     properties:
@@ -1395,6 +1449,11 @@ definitions:
         type: integer
       up_percent:
         type: number
+    required:
+    - avg_delay
+    - total_down
+    - total_up
+    - up_percent
     type: object
   model.ServiceInfos:
     properties:
@@ -1417,6 +1476,14 @@ definitions:
         type: integer
       server_name:
         type: string
+    required:
+    - avg_delay
+    - created_at
+    - display_index
+    - monitor_id
+    - monitor_name
+    - server_id
+    - server_name
     type: object
   model.ServiceResponse:
     properties:
@@ -1453,6 +1520,11 @@ definitions:
         items:
           type: integer
         type: array
+    required:
+    - current_down
+    - current_up
+    - total_down
+    - total_up
     type: object
   model.Setting:
     properties:
@@ -1535,6 +1607,11 @@ definitions:
       web_real_ip_header:
         description: 前端真实IP
         type: string
+    required:
+    - cover
+    - ip_change_notification_group_id
+    - language
+    - site_name
     type: object
   model.SettingForm:
     properties:
@@ -1599,6 +1676,9 @@ definitions:
         type: boolean
       version:
         type: string
+    required:
+    - config
+    - tsdb_enabled
     type: object
   model.StreamServer:
     properties:
@@ -1655,6 +1735,8 @@ definitions:
         type: string
       username:
         type: string
+    required:
+    - role
     type: object
   model.UserForm:
     properties:
@@ -1664,24 +1746,6 @@ definitions:
         $ref: '#/definitions/model.Role'
       username:
         type: string
-    type: object
-  model.Value-array_model_OnlineUser:
-    properties:
-      pagination:
-        $ref: '#/definitions/model.Pagination'
-      value:
-        items:
-          $ref: '#/definitions/model.OnlineUser'
-        type: array
-    type: object
-  model.Value-array_model_WAFApiMock:
-    properties:
-      pagination:
-        $ref: '#/definitions/model.Pagination'
-      value:
-        items:
-          $ref: '#/definitions/model.WAFApiMock'
-        type: array
     type: object
   model.WAFApiMock:
     properties:
@@ -1727,7 +1791,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-array_model_AlertRule'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_AlertRule'
       security:
       - BearerAuth: []
       summary: List Alert rules
@@ -1750,7 +1814,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-uint64'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-uint64'
       security:
       - BearerAuth: []
       summary: Add Alert Rule
@@ -1779,7 +1843,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-any'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any'
       security:
       - BearerAuth: []
       summary: Update Alert Rule
@@ -1793,7 +1857,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-array_model_APITokenView'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_APITokenView'
       summary: List API tokens
       tags:
       - auth required
@@ -1813,7 +1877,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-model_APITokenCreateResponse'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_APITokenCreateResponse'
       summary: Create API token
       tags:
       - auth required
@@ -1831,7 +1895,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-any'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any'
       summary: Revoke API token
       tags:
       - auth required
@@ -1900,7 +1964,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-any'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any'
       summary: Oauth2 Callback
   /batch-delete/alert-rule:
     post:
@@ -1922,36 +1986,10 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-any'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any'
       security:
       - BearerAuth: []
       summary: Batch delete Alert rules
-      tags:
-      - auth required
-  /batch-delete/cron:
-    post:
-      consumes:
-      - application/json
-      description: Batch delete schedule tasks
-      parameters:
-      - description: id list
-        in: body
-        name: request
-        required: true
-        schema:
-          items:
-            type: integer
-          type: array
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/model.CommonResponse-any'
-      security:
-      - BearerAuth: []
-      summary: Batch delete schedule tasks
       tags:
       - auth required
   /batch-delete/ddns:
@@ -1974,7 +2012,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-any'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any'
       security:
       - BearerAuth: []
       summary: Batch delete DDNS configurations
@@ -2000,7 +2038,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-any'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any'
       security:
       - BearerAuth: []
       summary: Batch delete NAT configurations
@@ -2026,7 +2064,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-any'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any'
       security:
       - BearerAuth: []
       summary: Batch delete notifications
@@ -2052,7 +2090,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-any'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any'
       security:
       - BearerAuth: []
       summary: Batch delete notification group
@@ -2078,7 +2116,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-any'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any'
       security:
       - BearerAuth: []
       summary: Batch delete server
@@ -2104,7 +2142,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-any'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any'
       security:
       - BearerAuth: []
       summary: Batch delete server group
@@ -2130,7 +2168,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-any'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any'
       security:
       - BearerAuth: []
       summary: Batch delete service
@@ -2156,7 +2194,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-any'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any'
       security:
       - BearerAuth: []
       summary: Batch delete users
@@ -2182,7 +2220,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-any'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any'
       security:
       - BearerAuth: []
       summary: Edit server
@@ -2217,105 +2255,10 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-array_model_BatchMoveServerResult'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_BatchMoveServerResult'
       security:
       - BearerAuth: []
       summary: Batch move servers to other user
-      tags:
-      - auth required
-  /cron:
-    get:
-      description: List schedule tasks
-      parameters:
-      - description: Resource ID
-        in: query
-        name: id
-        type: integer
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/model.CommonResponse-array_model_Cron'
-      security:
-      - BearerAuth: []
-      summary: List schedule tasks
-      tags:
-      - auth required
-    post:
-      consumes:
-      - application/json
-      description: Create new schedule task
-      parameters:
-      - description: CronForm
-        in: body
-        name: request
-        required: true
-        schema:
-          $ref: '#/definitions/model.CronForm'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/model.CommonResponse-uint64'
-      security:
-      - BearerAuth: []
-      summary: Create new schedule task
-      tags:
-      - auth required
-  /cron/{id}:
-    patch:
-      consumes:
-      - application/json
-      description: Update schedule task
-      parameters:
-      - description: Task ID
-        in: path
-        name: id
-        required: true
-        type: integer
-      - description: CronForm
-        in: body
-        name: request
-        required: true
-        schema:
-          $ref: '#/definitions/model.CronForm'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/model.CommonResponse-any'
-      security:
-      - BearerAuth: []
-      summary: Update schedule task
-      tags:
-      - auth required
-  /cron/{id}/manual:
-    post:
-      consumes:
-      - application/json
-      description: Trigger schedule task
-      parameters:
-      - description: Task ID
-        in: path
-        name: id
-        required: true
-        type: integer
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/model.CommonResponse-any'
-      security:
-      - BearerAuth: []
-      summary: Trigger schedule task
       tags:
       - auth required
   /ddns:
@@ -2332,7 +2275,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-array_model_DDNSProfile'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_DDNSProfile'
       security:
       - BearerAuth: []
       summary: List DDNS profiles
@@ -2355,7 +2298,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-uint64'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-uint64'
       security:
       - BearerAuth: []
       summary: Add DDNS profile
@@ -2384,7 +2327,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-any'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any'
       security:
       - BearerAuth: []
       summary: Edit DDNS profile
@@ -2399,7 +2342,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-array_string'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_string'
       security:
       - BearerAuth: []
       summary: List DDNS providers
@@ -2447,7 +2390,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-model_ServerTaskResponse'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_ServerTaskResponse'
       security:
       - BearerAuth: []
       summary: Force update Agent
@@ -2471,7 +2414,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-model_LoginResponse'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_LoginResponse'
       summary: user login
   /maintenance:
     post:
@@ -2482,7 +2425,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-any'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any'
       security:
       - BearerAuth: []
       summary: Perform maintenance
@@ -2502,7 +2445,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-array_model_NAT'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_NAT'
       security:
       - BearerAuth: []
       summary: List NAT profiles
@@ -2525,7 +2468,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-uint64'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-uint64'
       security:
       - BearerAuth: []
       summary: Add NAT profile
@@ -2554,7 +2497,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-any'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any'
       security:
       - BearerAuth: []
       summary: Edit NAT profile
@@ -2574,7 +2517,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-array_model_Notification'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_Notification'
       security:
       - BearerAuth: []
       summary: List notification
@@ -2597,7 +2540,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-any'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any'
       security:
       - BearerAuth: []
       summary: Add notification
@@ -2612,7 +2555,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-array_model_NotificationGroupResponseItem'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_NotificationGroupResponseItem'
       security:
       - BearerAuth: []
       summary: List notification group
@@ -2635,7 +2578,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-any'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any'
       security:
       - BearerAuth: []
       summary: New notification group
@@ -2664,7 +2607,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-any'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any'
       security:
       - BearerAuth: []
       summary: Edit notification group
@@ -2693,7 +2636,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-any'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any'
       security:
       - BearerAuth: []
       summary: Edit notification
@@ -2717,7 +2660,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.PaginatedResponse-array_model_OnlineUser-model_OnlineUser'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.PaginatedResponse-array_model_OnlineUser-model_OnlineUser'
       security:
       - BearerAuth: []
       summary: List online users
@@ -2743,7 +2686,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-any'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any'
       security:
       - BearerAuth: []
       summary: Batch block online user
@@ -2758,7 +2701,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-model_Profile'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_Profile'
       security:
       - BearerAuth: []
       summary: Get profile
@@ -2781,7 +2724,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-any'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any'
       security:
       - BearerAuth: []
       summary: Update password for current user
@@ -2796,7 +2739,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-model_LoginResponse'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_LoginResponse'
       security:
       - BearerAuth: []
       summary: Refresh token
@@ -2816,7 +2759,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-array_model_Server'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_Server'
       security:
       - BearerAuth: []
       - APITokenAuth: []
@@ -2832,7 +2775,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-array_model_ServerGroupResponseItem'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_ServerGroupResponseItem'
       security:
       - BearerAuth: []
       summary: List server group
@@ -2855,7 +2798,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-uint64'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-uint64'
       security:
       - BearerAuth: []
       summary: New server group
@@ -2884,7 +2827,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-any'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any'
       security:
       - BearerAuth: []
       summary: Edit server group
@@ -2913,7 +2856,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-any'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any'
       security:
       - BearerAuth: []
       summary: Edit server
@@ -2945,7 +2888,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-model_ServerMetricsResponse'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_ServerMetricsResponse'
       security:
       - BearerAuth: []
       summary: Get server metrics history
@@ -2972,7 +2915,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-model_OnlineHistoryResponse'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_OnlineHistoryResponse'
       security:
       - BearerAuth: []
       summary: Get server online history
@@ -2997,7 +2940,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-array_model_ServiceInfos'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_ServiceInfos'
       security:
       - BearerAuth: []
       summary: List service histories by server id
@@ -3021,7 +2964,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-model_ServerTaskResponse'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_ServerTaskResponse'
       security:
       - BearerAuth: []
       summary: Set server config
@@ -3036,7 +2979,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-string'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-string'
       security:
       - BearerAuth: []
       summary: Get server config
@@ -3051,7 +2994,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-model_ServiceResponse'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_ServiceResponse'
       security:
       - BearerAuth: []
       summary: Show service
@@ -3074,7 +3017,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-uint64'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-uint64'
       security:
       - BearerAuth: []
       summary: Create service
@@ -3103,7 +3046,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-any'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any'
       security:
       - BearerAuth: []
       summary: Update service
@@ -3128,7 +3071,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-model_ServiceHistoryResponse'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_ServiceHistoryResponse'
       security:
       - BearerAuth: []
       summary: Get service history by service ID
@@ -3148,7 +3091,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-array_model_Service'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_Service'
       security:
       - BearerAuth: []
       summary: List service
@@ -3163,7 +3106,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-array_uint64'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_uint64'
       security:
       - BearerAuth: []
       summary: List server with service
@@ -3178,7 +3121,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-model_SettingResponse'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_SettingResponse'
       security:
       - BearerAuth: []
       summary: List settings
@@ -3201,7 +3144,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-any'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any'
       security:
       - BearerAuth: []
       summary: Edit config
@@ -3243,7 +3186,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-array_model_ServerTransfer'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_ServerTransfer'
       security:
       - BearerAuth: []
       summary: List server transfers
@@ -3269,7 +3212,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-model_ServerTransfer'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_ServerTransfer'
       security:
       - BearerAuth: []
       summary: Cancel server transfer
@@ -3298,7 +3241,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-model_ServerTransfer'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_ServerTransfer'
       security:
       - BearerAuth: []
       summary: Retry server transfer
@@ -3313,7 +3256,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-array_model_User'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_User'
       security:
       - BearerAuth: []
       summary: List user
@@ -3336,7 +3279,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-uint64'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-uint64'
       security:
       - BearerAuth: []
       summary: Create user
@@ -3360,7 +3303,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.PaginatedResponse-array_model_WAFApiMock-model_WAFApiMock'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.PaginatedResponse-array_model_WAFApiMock-model_WAFApiMock'
       security:
       - BearerAuth: []
       summary: List blocked addresses
@@ -3379,7 +3322,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-any'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any'
       summary: Start FM stream
       tags:
       - auth required
@@ -3411,7 +3354,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CommonResponse-any'
+            $ref: '#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any'
       summary: Terminal stream
       tags:
       - auth required

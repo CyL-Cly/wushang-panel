@@ -237,7 +237,9 @@ func (ns *NotificationServerBundle) sendDingtalk(message string) error {
 		return err
 	}
 
-	client, err := newNotificationHTTPClient(reqURL, false)
+	// 固定公网端点（oapi.dingtalk.com，URL 由用户填写但 host 受 SSRF 校验约束），
+	// 直接启用 TLS 校验保护 URL 中的 access_token。
+	client, err := newNotificationHTTPClient(reqURL, true)
 	if err != nil {
 		return err
 	}
@@ -267,7 +269,28 @@ func (ns *NotificationServerBundle) sendDingtalk(message string) error {
 	return nil
 }
 
-// sendServerchan 通过 Server酱³ (sctapi.ftqq.com) 推送消息。
+// serverchanResponse 是 Server酱 (sctapi.ftqq.com) 的响应体，code != 0 表示
+// 业务失败（如 SendKey 失效、限额），即使 HTTP 200 也不算送达。
+type serverchanResponse struct {
+	Code    int    `json:"code"`
+	Message string `json:"message"`
+}
+
+// serverchanTitle 从全文提取推送标题：取首行，去首尾空白，截 32 个 rune。
+func serverchanTitle(rendered string) string {
+	title := rendered
+	if idx := strings.IndexAny(title, "\r\n"); idx >= 0 {
+		title = title[:idx]
+	}
+	title = strings.TrimSpace(title)
+	if titleRunes := []rune(title); len(titleRunes) > 32 {
+		return string(titleRunes[:32])
+	}
+	return title
+}
+
+// sendServerchan 通过 Server酱 Turbo (sctapi.ftqq.com) 推送消息。
+// 仅支持 SCT 开头的 SendKey（Server酱³ 的 sctp 需走 ft07.com 独立端点）。
 // title 取消息首行（截 32 个 rune），desp 为全文（Markdown）。
 func (ns *NotificationServerBundle) sendServerchan(message string) error {
 	sendKey := strings.TrimSpace(ns.Notification.ServerchanSendKey)
@@ -276,21 +299,15 @@ func (ns *NotificationServerBundle) sendServerchan(message string) error {
 	}
 
 	rendered := ns.replaceServerPlaceholders(message, message, nil)
-	title := rendered
-	if idx := strings.IndexAny(title, "\r\n"); idx >= 0 {
-		title = title[:idx]
-	}
-	title = strings.TrimSpace(title)
-	if titleRunes := []rune(title); len(titleRunes) > 32 {
-		title = string(titleRunes[:32])
-	}
+	title := serverchanTitle(rendered)
 
 	form := url.Values{}
-	form.Set("title", string(title))
+	form.Set("title", title)
 	form.Set("desp", rendered)
 
 	reqURL := fmt.Sprintf("https://sctapi.ftqq.com/%s.send", sendKey)
-	client, err := newNotificationHTTPClient(reqURL, false)
+	// 固定公网端点（非用户可控），直接启用 TLS 校验保护 URL 中的 SendKey。
+	client, err := newNotificationHTTPClient(reqURL, true)
 	if err != nil {
 		return err
 	}
@@ -303,11 +320,20 @@ func (ns *NotificationServerBundle) sendServerchan(message string) error {
 		_ = resp.Body.Close()
 	}()
 
+	body, _ := io.ReadAll(io.LimitReader(resp.Body, 8192))
 	if resp.StatusCode < 200 || resp.StatusCode > 299 {
 		// SendKey 在 URL 路径里，错误信息不回显 URL。
 		return fmt.Errorf("serverchan: unexpected HTTP status %d", resp.StatusCode)
 	}
-	_, _ = io.Copy(io.Discard, resp.Body)
+
+	var sr serverchanResponse
+	if err := json.Unmarshal(body, &sr); err != nil {
+		return fmt.Errorf("serverchan: malformed response (%T)", err)
+	}
+	if sr.Code != 0 {
+		// 业务错误信息由 Server酱明文给出，不含凭据，可透出。
+		return fmt.Errorf("serverchan: code=%d message=%s", sr.Code, sr.Message)
+	}
 	return nil
 }
 

@@ -19,9 +19,16 @@ download_and_extract() {
 
   curl -L -o "dist.zip" "$repository/releases/download/$version/dist.zip"
 
-  [ -e "$targetDir" ] && rm -r "$targetDir"
   unzip -q dist.zip
-  mv dist "$targetDir"
+  # Replace the contents but keep the tracked .gitkeep so the embed directory
+  # still exists on a fresh clone (mirrors install_dist in build-frontends.sh).
+  if [ -e "$targetDir" ]; then
+    rm -rf "${targetDir:?}"/* "${targetDir:?}"/.[!.]* 2>/dev/null || true
+    cp -r dist/. "$targetDir"/
+    touch "$targetDir/.gitkeep"
+  else
+    mv dist "$targetDir"
+  fi
 
   rm "dist.zip"
   popd || exit

@@ -50,7 +50,7 @@ func TestDingtalkSignedURL(t *testing.T) {
 	wantSign := base64.StdEncoding.EncodeToString(wantMAC.Sum(nil))
 
 	n := &Notification{
-		Channel:           NotificationChannelDingtalk,
+		Channel:            NotificationChannelDingtalk,
 		DingtalkWebhookURL: "https://oapi.dingtalk.com/robot/send?access_token=abc",
 		DingtalkSecret:     secret,
 	}
@@ -68,6 +68,62 @@ func TestDingtalkSignedURL(t *testing.T) {
 	bare := &Notification{DingtalkWebhookURL: "https://oapi.dingtalk.com/robot/send?access_token=abc"}
 	if bareURL := bare.dingtalkSignedURL(ts); bareURL != bare.DingtalkWebhookURL {
 		t.Fatalf("unsigned robot URL must stay untouched, got %q", bareURL)
+	}
+
+	// URL 无查询串时必须用 ? 而不是 & 拼接。
+	noQuery := &Notification{DingtalkWebhookURL: "https://oapi.dingtalk.com/robot/send", DingtalkSecret: secret}
+	signed := noQuery.dingtalkSignedURL(ts)
+	if !strings.Contains(signed, "send?timestamp=") {
+		t.Fatalf("missing query separator '?': %q", signed)
+	}
+	if strings.Contains(signed, "&timestamp=") {
+		t.Fatalf("first parameter must use '?': %q", signed)
+	}
+}
+
+// TestServerchanTitle pins the title extraction: first line, trimmed,
+// truncated to 32 runes.
+func TestServerchanTitle(t *testing.T) {
+	cases := []struct {
+		name string
+		in   string
+		want string
+	}{
+		{"first line wins", "主机宕机告警\n详情见正文", "主机宕机告警"},
+		{"crlf handled", "标题\r\n第二行", "标题"},
+		{"trimmed", "   空白标题   ", "空白标题"},
+		{"32 runes kept", strings.Repeat("字", 32), strings.Repeat("字", 32)},
+		{"33 runes truncated", strings.Repeat("字", 33), strings.Repeat("字", 32)},
+		{"multiline truncated to first line", strings.Repeat("a", 40) + "\nrest", strings.Repeat("a", 32)},
+		{"empty message", "", ""},
+	}
+	for _, tc := range cases {
+		if got := serverchanTitle(tc.in); got != tc.want {
+			t.Errorf("%s: serverchanTitle(%q) = %q, want %q", tc.name, tc.in, got, tc.want)
+		}
+	}
+}
+
+// TestServerchanResponseUnmarshal pins that sendServerchan's business-error
+// contract (code != 0 means failure even with HTTP 200).
+func TestServerchanResponseUnmarshal(t *testing.T) {
+	var ok serverchanResponse
+	if err := json.Unmarshal([]byte(`{"code":0,"message":"success"}`), &ok); err != nil {
+		t.Fatal(err)
+	}
+	if ok.Code != 0 {
+		t.Fatalf("code=0 expected, got %d", ok.Code)
+	}
+
+	var fail serverchanResponse
+	if err := json.Unmarshal([]byte(`{"code":40001,"message":"bad sendkey"}`), &fail); err != nil {
+		t.Fatal(err)
+	}
+	if fail.Code == 0 {
+		t.Fatal("non-zero business code must not parse as success")
+	}
+	if fail.Message != "bad sendkey" {
+		t.Fatalf("message mismatch: %q", fail.Message)
 	}
 }
 

@@ -325,5 +325,6 @@
     "DingtalkWebhookURL": "釘釘 Webhook 地址",
     "DingtalkSecret": "釘釘加簽密鑰 Secret（可選）",
     "ServerchanSendKey": "Server醬 SendKey",
+    "DingtalkClearSecret": "清除已保存的加簽密鑰",
     "DingtalkKeywordHint": "提示：釘釘機器人安全設置需將自定義關鍵詞設為 #NEZHA#，或啟用加簽並填寫 Secret"
 }

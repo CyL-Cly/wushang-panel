@@ -325,5 +325,6 @@
     "DingtalkWebhookURL": "钉钉 Webhook 地址",
     "DingtalkSecret": "钉钉加签密钥 Secret（可选）",
     "ServerchanSendKey": "Server酱 SendKey",
+    "DingtalkClearSecret": "清除已保存的加签密钥",
     "DingtalkKeywordHint": "提示：钉钉机器人安全设置需将自定义关键词设为 #NEZHA#，或启用加签并填写 Secret"
 }

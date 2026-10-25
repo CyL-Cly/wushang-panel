@@ -68,6 +68,7 @@ const notificationFormSchema = z.object({
     format_metric_units: asOptionalField(z.boolean()),
     dingtalk_webhook_url: z.string(),
     dingtalk_secret: z.string(),
+    clear_dingtalk_secret: asOptionalField(z.boolean()),
     serverchan_sendkey: z.string(),
 })
 
@@ -95,6 +96,7 @@ export const NotifierCard: React.FC<NotifierCardProps> = ({ data, mutate }) => {
                   format_metric_units: data.format_metric_units ?? false,
                   dingtalk_webhook_url: data.dingtalk_webhook_url ?? "",
                   dingtalk_secret: data.dingtalk_secret ?? "",
+                  clear_dingtalk_secret: false,
                   serverchan_sendkey: data.serverchan_sendkey ?? "",
               }
             : {
@@ -110,6 +112,7 @@ export const NotifierCard: React.FC<NotifierCardProps> = ({ data, mutate }) => {
                   format_metric_units: false,
                   dingtalk_webhook_url: "",
                   dingtalk_secret: "",
+                  clear_dingtalk_secret: false,
                   serverchan_sendkey: "",
               },
         resetOptions: {
@@ -133,6 +136,7 @@ export const NotifierCard: React.FC<NotifierCardProps> = ({ data, mutate }) => {
                 if (current !== CHANNEL_DINGTALK) {
                     form.setValue("dingtalk_webhook_url", "")
                     form.setValue("dingtalk_secret", "")
+                    form.setValue("clear_dingtalk_secret", false)
                 }
                 if (current !== CHANNEL_SERVERCHAN) {
                     form.setValue("serverchan_sendkey", "")
@@ -144,6 +148,7 @@ export const NotifierCard: React.FC<NotifierCardProps> = ({ data, mutate }) => {
 
     const onSubmit = async (values: NotificationFormData) => {
         // 凭据字段：新建时必填；编辑时留空=沿用旧值（后端列表已脱敏）。
+        // 已保存的加签密钥只能通过 clear_dingtalk_secret 显式清除。
         const isNew = !data?.id
         if (
             isNew &&
@@ -273,6 +278,26 @@ export const NotifierCard: React.FC<NotifierCardProps> = ({ data, mutate }) => {
                                                         />
                                                     </FormControl>
                                                     <FormMessage />
+                                                    {data?.id && (
+                                                        <div className="flex items-center gap-2">
+                                                            <Checkbox
+                                                                checked={
+                                                                    form.getValues(
+                                                                        "clear_dingtalk_secret",
+                                                                    ) === true
+                                                                }
+                                                                onCheckedChange={(v) =>
+                                                                    form.setValue(
+                                                                        "clear_dingtalk_secret",
+                                                                        v === true,
+                                                                    )
+                                                                }
+                                                            />
+                                                            <Label className="text-sm">
+                                                                {t("DingtalkClearSecret")}
+                                                            </Label>
+                                                        </div>
+                                                    )}
                                                     <p className="text-sm text-muted-foreground">
                                                         {t("DingtalkKeywordHint")}
                                                     </p>

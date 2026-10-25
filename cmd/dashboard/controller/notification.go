@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"errors"
 	"net/http"
 	"slices"
 	"strconv"
@@ -159,8 +160,14 @@ func updateNotification(c *gin.Context) (any, error) {
 	if nf.DingtalkWebhookURL != "" {
 		n.DingtalkWebhookURL = nf.DingtalkWebhookURL
 	}
-	// 加签 Secret 允许主动清空（从加签切回关键词模式）；Webhook 与 SendKey 留空=不改。
-	n.DingtalkSecret = nf.DingtalkSecret
+	if nf.DingtalkSecret != "" {
+		n.DingtalkSecret = nf.DingtalkSecret
+	}
+	// 加签 Secret 的显式清除走 clear_dingtalk_secret（从加签切回关键词模式）；
+	// 留空=不改，与其余凭据字段一致。
+	if nf.ClearDingtalkSecret {
+		n.DingtalkSecret = ""
+	}
 	if nf.ServerchanSendKey != "" {
 		n.ServerchanSendKey = nf.ServerchanSendKey
 	}
@@ -231,9 +238,14 @@ func batchDeleteNotification(c *gin.Context) (any, error) {
 	return nil, nil
 }
 
-// validateNotificationChannel 按渠道校验必填凭据，避免入库后测试发送才报错。
+// validateNotificationChannel 校验渠道取值范围，并按渠道校验必填凭据，
+// 避免入库后测试发送才报错。
 func validateNotificationChannel(n *model.Notification) error {
 	switch n.Channel {
+	case model.NotificationChannelWebhook:
+		if strings.TrimSpace(n.URL) == "" {
+			return errors.New("webhook url is required")
+		}
 	case model.NotificationChannelDingtalk:
 		if strings.TrimSpace(n.DingtalkWebhookURL) == "" {
 			return singleton.Localizer.ErrorT("dingtalk webhook url is required")
@@ -242,6 +254,8 @@ func validateNotificationChannel(n *model.Notification) error {
 		if strings.TrimSpace(n.ServerchanSendKey) == "" {
 			return singleton.Localizer.ErrorT("serverchan sendkey is required")
 		}
+	default:
+		return errors.New("unsupported notification channel")
 	}
 	return nil
 }

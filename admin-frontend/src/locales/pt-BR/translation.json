@@ -7,5 +7,6 @@
     "DingtalkWebhookURL": "DingTalk Webhook URL",
     "DingtalkSecret": "DingTalk Signing Secret (optional)",
     "ServerchanSendKey": "ServerChan SendKey",
+    "DingtalkClearSecret": "Clear saved signing secret",
     "DingtalkKeywordHint": "Note: set the DingTalk robot custom keyword to #NEZHA#, or enable signing and fill in the secret"
 }

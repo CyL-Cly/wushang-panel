@@ -51,7 +51,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-array_model_AlertRule"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_AlertRule"
                         }
                     }
                 }
@@ -88,7 +88,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-uint64"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-uint64"
                         }
                     }
                 }
@@ -134,7 +134,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-any"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any"
                         }
                     }
                 }
@@ -153,7 +153,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-array_model_APITokenView"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_APITokenView"
                         }
                     }
                 }
@@ -184,7 +184,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-model_APITokenCreateResponse"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_APITokenCreateResponse"
                         }
                     }
                 }
@@ -212,7 +212,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-any"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any"
                         }
                     }
                 }
@@ -248,7 +248,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-any"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any"
                         }
                     }
                 }
@@ -354,49 +354,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-any"
-                        }
-                    }
-                }
-            }
-        },
-        "/batch-delete/cron": {
-            "post": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "description": "Batch delete schedule tasks",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "auth required"
-                ],
-                "summary": "Batch delete schedule tasks",
-                "parameters": [
-                    {
-                        "description": "id list",
-                        "name": "request",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "type": "integer"
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-any"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any"
                         }
                     }
                 }
@@ -438,7 +396,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-any"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any"
                         }
                     }
                 }
@@ -480,7 +438,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-any"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any"
                         }
                     }
                 }
@@ -522,7 +480,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-any"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any"
                         }
                     }
                 }
@@ -564,7 +522,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-any"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any"
                         }
                     }
                 }
@@ -606,7 +564,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-any"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any"
                         }
                     }
                 }
@@ -648,7 +606,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-any"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any"
                         }
                     }
                 }
@@ -690,7 +648,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-any"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any"
                         }
                     }
                 }
@@ -732,7 +690,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-any"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any"
                         }
                     }
                 }
@@ -774,7 +732,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-any"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any"
                         }
                     }
                 }
@@ -813,160 +771,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-array_model_BatchMoveServerResult"
-                        }
-                    }
-                }
-            }
-        },
-        "/cron": {
-            "get": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "description": "List schedule tasks",
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "auth required"
-                ],
-                "summary": "List schedule tasks",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "Resource ID",
-                        "name": "id",
-                        "in": "query"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-array_model_Cron"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "description": "Create new schedule task",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "auth required"
-                ],
-                "summary": "Create new schedule task",
-                "parameters": [
-                    {
-                        "description": "CronForm",
-                        "name": "request",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/model.CronForm"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-uint64"
-                        }
-                    }
-                }
-            }
-        },
-        "/cron/{id}": {
-            "patch": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "description": "Update schedule task",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "auth required"
-                ],
-                "summary": "Update schedule task",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "Task ID",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "description": "CronForm",
-                        "name": "request",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/model.CronForm"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-any"
-                        }
-                    }
-                }
-            }
-        },
-        "/cron/{id}/manual": {
-            "post": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "description": "Trigger schedule task",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "auth required"
-                ],
-                "summary": "Trigger schedule task",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "Task ID",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-any"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_BatchMoveServerResult"
                         }
                     }
                 }
@@ -999,7 +804,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-array_model_DDNSProfile"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_DDNSProfile"
                         }
                     }
                 }
@@ -1036,7 +841,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-uint64"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-uint64"
                         }
                     }
                 }
@@ -1061,7 +866,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-array_string"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_string"
                         }
                     }
                 }
@@ -1107,7 +912,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-any"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any"
                         }
                     }
                 }
@@ -1181,7 +986,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-model_ServerTaskResponse"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_ServerTaskResponse"
                         }
                     }
                 }
@@ -1212,7 +1017,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-model_LoginResponse"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_LoginResponse"
                         }
                     }
                 }
@@ -1237,7 +1042,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-any"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any"
                         }
                     }
                 }
@@ -1270,7 +1075,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-array_model_NAT"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_NAT"
                         }
                     }
                 }
@@ -1307,7 +1112,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-uint64"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-uint64"
                         }
                     }
                 }
@@ -1353,7 +1158,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-any"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any"
                         }
                     }
                 }
@@ -1386,7 +1191,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-array_model_Notification"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_Notification"
                         }
                     }
                 }
@@ -1423,7 +1228,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-any"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any"
                         }
                     }
                 }
@@ -1448,7 +1253,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-array_model_NotificationGroupResponseItem"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_NotificationGroupResponseItem"
                         }
                     }
                 }
@@ -1485,7 +1290,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-any"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any"
                         }
                     }
                 }
@@ -1531,7 +1336,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-any"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any"
                         }
                     }
                 }
@@ -1577,7 +1382,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-any"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any"
                         }
                     }
                 }
@@ -1616,7 +1421,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.PaginatedResponse-array_model_OnlineUser-model_OnlineUser"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.PaginatedResponse-array_model_OnlineUser-model_OnlineUser"
                         }
                     }
                 }
@@ -1658,7 +1463,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-any"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any"
                         }
                     }
                 }
@@ -1683,7 +1488,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-model_Profile"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_Profile"
                         }
                     }
                 }
@@ -1720,7 +1525,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-any"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any"
                         }
                     }
                 }
@@ -1745,7 +1550,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-model_LoginResponse"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_LoginResponse"
                         }
                     }
                 }
@@ -1781,7 +1586,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-array_model_Server"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_Server"
                         }
                     }
                 }
@@ -1806,7 +1611,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-array_model_ServerGroupResponseItem"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_ServerGroupResponseItem"
                         }
                     }
                 }
@@ -1843,7 +1648,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-uint64"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-uint64"
                         }
                     }
                 }
@@ -1889,7 +1694,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-any"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any"
                         }
                     }
                 }
@@ -1928,7 +1733,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-model_ServerTaskResponse"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_ServerTaskResponse"
                         }
                     }
                 }
@@ -1953,7 +1758,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-string"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-string"
                         }
                     }
                 }
@@ -1999,7 +1804,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-any"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any"
                         }
                     }
                 }
@@ -2046,7 +1851,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-model_ServerMetricsResponse"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_ServerMetricsResponse"
                         }
                     }
                 }
@@ -2086,7 +1891,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-model_OnlineHistoryResponse"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_OnlineHistoryResponse"
                         }
                     }
                 }
@@ -2126,7 +1931,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-array_model_ServiceInfos"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_ServiceInfos"
                         }
                     }
                 }
@@ -2151,7 +1956,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-model_ServiceResponse"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_ServiceResponse"
                         }
                     }
                 }
@@ -2188,7 +1993,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-uint64"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-uint64"
                         }
                     }
                 }
@@ -2221,7 +2026,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-array_model_Service"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_Service"
                         }
                     }
                 }
@@ -2246,7 +2051,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-array_uint64"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_uint64"
                         }
                     }
                 }
@@ -2292,7 +2097,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-any"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any"
                         }
                     }
                 }
@@ -2332,7 +2137,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-model_ServiceHistoryResponse"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_ServiceHistoryResponse"
                         }
                     }
                 }
@@ -2357,7 +2162,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-model_SettingResponse"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_SettingResponse"
                         }
                     }
                 }
@@ -2394,7 +2199,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-any"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any"
                         }
                     }
                 }
@@ -2453,7 +2258,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-array_model_ServerTransfer"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_ServerTransfer"
                         }
                     }
                 }
@@ -2487,7 +2292,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-model_ServerTransfer"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_ServerTransfer"
                         }
                     }
                 }
@@ -2521,7 +2326,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-model_ServerTransfer"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_ServerTransfer"
                         }
                     }
                 }
@@ -2546,7 +2351,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-array_model_User"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_User"
                         }
                     }
                 }
@@ -2583,7 +2388,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-uint64"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-uint64"
                         }
                     }
                 }
@@ -2622,7 +2427,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.PaginatedResponse-array_model_WAFApiMock-model_WAFApiMock"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.PaginatedResponse-array_model_WAFApiMock-model_WAFApiMock"
                         }
                     }
                 }
@@ -2648,7 +2453,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-any"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any"
                         }
                     }
                 }
@@ -2699,7 +2504,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CommonResponse-any"
+                            "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.CommonResponse-any"
                         }
                     }
                 }
@@ -2732,6 +2537,497 @@ const docTemplate = `{
         }
     },
     "definitions": {
+        "github_com_CyL-Cly_wushang-panel_model.CommonResponse-any": {
+            "type": "object",
+            "properties": {
+                "data": {},
+                "error": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_APITokenView": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.APITokenView"
+                    }
+                },
+                "error": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_AlertRule": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.AlertRule"
+                    }
+                },
+                "error": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_BatchMoveServerResult": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.BatchMoveServerResult"
+                    }
+                },
+                "error": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_DDNSProfile": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.DDNSProfile"
+                    }
+                },
+                "error": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_NAT": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.NAT"
+                    }
+                },
+                "error": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_Notification": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.Notification"
+                    }
+                },
+                "error": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_NotificationGroupResponseItem": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.NotificationGroupResponseItem"
+                    }
+                },
+                "error": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_Server": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.Server"
+                    }
+                },
+                "error": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_ServerGroupResponseItem": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.ServerGroupResponseItem"
+                    }
+                },
+                "error": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_ServerTransfer": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.ServerTransfer"
+                    }
+                },
+                "error": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_Service": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.Service"
+                    }
+                },
+                "error": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_ServiceInfos": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.ServiceInfos"
+                    }
+                },
+                "error": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_model_User": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.User"
+                    }
+                },
+                "error": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_string": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "error": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_CyL-Cly_wushang-panel_model.CommonResponse-array_uint64": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "error": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_APITokenCreateResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/model.APITokenCreateResponse"
+                },
+                "error": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_LoginResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/model.LoginResponse"
+                },
+                "error": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_OnlineHistoryResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/model.OnlineHistoryResponse"
+                },
+                "error": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_Profile": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/model.Profile"
+                },
+                "error": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_ServerMetricsResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/model.ServerMetricsResponse"
+                },
+                "error": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_ServerTaskResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/model.ServerTaskResponse"
+                },
+                "error": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_ServerTransfer": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/model.ServerTransfer"
+                },
+                "error": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_ServiceHistoryResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/model.ServiceHistoryResponse"
+                },
+                "error": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_ServiceResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/model.ServiceResponse"
+                },
+                "error": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_CyL-Cly_wushang-panel_model.CommonResponse-model_SettingResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/model.SettingResponse"
+                },
+                "error": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_CyL-Cly_wushang-panel_model.CommonResponse-string": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "string"
+                },
+                "error": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_CyL-Cly_wushang-panel_model.CommonResponse-uint64": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "integer"
+                },
+                "error": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_CyL-Cly_wushang-panel_model.PaginatedResponse-array_model_OnlineUser-model_OnlineUser": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.Value-array_model_OnlineUser"
+                },
+                "error": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_CyL-Cly_wushang-panel_model.PaginatedResponse-array_model_WAFApiMock-model_WAFApiMock": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/github_com_CyL-Cly_wushang-panel_model.Value-array_model_WAFApiMock"
+                },
+                "error": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_CyL-Cly_wushang-panel_model.Value-array_model_OnlineUser": {
+            "type": "object",
+            "properties": {
+                "pagination": {
+                    "$ref": "#/definitions/model.Pagination"
+                },
+                "value": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.OnlineUser"
+                    }
+                }
+            }
+        },
+        "github_com_CyL-Cly_wushang-panel_model.Value-array_model_WAFApiMock": {
+            "type": "object",
+            "properties": {
+                "pagination": {
+                    "$ref": "#/definitions/model.Pagination"
+                },
+                "value": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.WAFApiMock"
+                    }
+                }
+            }
+        },
         "model.APITokenCreateRequest": {
             "type": "object",
             "required": [
@@ -2764,6 +3060,12 @@ const docTemplate = `{
         },
         "model.APITokenCreateResponse": {
             "type": "object",
+            "required": [
+                "id",
+                "name",
+                "scopes",
+                "token"
+            ],
             "properties": {
                 "expires_at": {
                     "type": "string"
@@ -2793,6 +3095,12 @@ const docTemplate = `{
         },
         "model.APITokenView": {
             "type": "object",
+            "required": [
+                "created_at",
+                "id",
+                "name",
+                "scopes"
+            ],
             "properties": {
                 "created_at": {
                     "type": "string"
@@ -2828,19 +3136,18 @@ const docTemplate = `{
         },
         "model.AlertRule": {
             "type": "object",
+            "required": [
+                "name",
+                "notification_group_id",
+                "rules",
+                "trigger_mode"
+            ],
             "properties": {
                 "created_at": {
                     "type": "string"
                 },
                 "enable": {
                     "type": "boolean"
-                },
-                "fail_trigger_tasks": {
-                    "description": "失败时执行的触发任务id",
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
                 },
                 "id": {
                     "type": "integer"
@@ -2851,13 +3158,6 @@ const docTemplate = `{
                 "notification_group_id": {
                     "description": "该报警规则所在的通知组",
                     "type": "integer"
-                },
-                "recover_trigger_tasks": {
-                    "description": "恢复时执行的触发任务id",
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
                 },
                 "rules": {
                     "type": "array",
@@ -2876,16 +3176,15 @@ const docTemplate = `{
         },
         "model.AlertRuleForm": {
             "type": "object",
+            "required": [
+                "name",
+                "notification_group_id",
+                "rules",
+                "trigger_mode"
+            ],
             "properties": {
                 "enable": {
                     "type": "boolean"
-                },
-                "fail_trigger_tasks": {
-                    "description": "失败时触发的任务id",
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
                 },
                 "name": {
                     "type": "string",
@@ -2893,13 +3192,6 @@ const docTemplate = `{
                 },
                 "notification_group_id": {
                     "type": "integer"
-                },
-                "recover_trigger_tasks": {
-                    "description": "恢复时触发的任务id",
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
                 },
                 "rules": {
                     "type": "array",
@@ -2933,6 +3225,10 @@ const docTemplate = `{
         },
         "model.BatchMoveServerResult": {
             "type": "object",
+            "required": [
+                "server_id",
+                "status"
+            ],
             "properties": {
                 "error": {
                     "type": "string"
@@ -2967,458 +3263,6 @@ const docTemplate = `{
                 "BatchMoveServerResultAgentTooOld"
             ]
         },
-        "model.CommonResponse-any": {
-            "type": "object",
-            "properties": {
-                "data": {},
-                "error": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "model.CommonResponse-array_model_APITokenView": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/model.APITokenView"
-                    }
-                },
-                "error": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "model.CommonResponse-array_model_AlertRule": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/model.AlertRule"
-                    }
-                },
-                "error": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "model.CommonResponse-array_model_BatchMoveServerResult": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/model.BatchMoveServerResult"
-                    }
-                },
-                "error": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "model.CommonResponse-array_model_Cron": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/model.Cron"
-                    }
-                },
-                "error": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "model.CommonResponse-array_model_DDNSProfile": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/model.DDNSProfile"
-                    }
-                },
-                "error": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "model.CommonResponse-array_model_NAT": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/model.NAT"
-                    }
-                },
-                "error": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "model.CommonResponse-array_model_Notification": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/model.Notification"
-                    }
-                },
-                "error": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "model.CommonResponse-array_model_NotificationGroupResponseItem": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/model.NotificationGroupResponseItem"
-                    }
-                },
-                "error": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "model.CommonResponse-array_model_Server": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/model.Server"
-                    }
-                },
-                "error": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "model.CommonResponse-array_model_ServerGroupResponseItem": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/model.ServerGroupResponseItem"
-                    }
-                },
-                "error": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "model.CommonResponse-array_model_ServerTransfer": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/model.ServerTransfer"
-                    }
-                },
-                "error": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "model.CommonResponse-array_model_Service": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/model.Service"
-                    }
-                },
-                "error": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "model.CommonResponse-array_model_ServiceInfos": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/model.ServiceInfos"
-                    }
-                },
-                "error": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "model.CommonResponse-array_model_User": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/model.User"
-                    }
-                },
-                "error": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "model.CommonResponse-array_string": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "error": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "model.CommonResponse-array_uint64": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                },
-                "error": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "model.CommonResponse-model_APITokenCreateResponse": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/model.APITokenCreateResponse"
-                },
-                "error": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "model.CommonResponse-model_LoginResponse": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/model.LoginResponse"
-                },
-                "error": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "model.CommonResponse-model_OnlineHistoryResponse": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/model.OnlineHistoryResponse"
-                },
-                "error": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "model.CommonResponse-model_Profile": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/model.Profile"
-                },
-                "error": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "model.CommonResponse-model_ServerMetricsResponse": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/model.ServerMetricsResponse"
-                },
-                "error": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "model.CommonResponse-model_ServerTaskResponse": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/model.ServerTaskResponse"
-                },
-                "error": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "model.CommonResponse-model_ServerTransfer": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/model.ServerTransfer"
-                },
-                "error": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "model.CommonResponse-model_ServiceHistoryResponse": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/model.ServiceHistoryResponse"
-                },
-                "error": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "model.CommonResponse-model_ServiceResponse": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/model.ServiceResponse"
-                },
-                "error": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "model.CommonResponse-model_SettingResponse": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/model.SettingResponse"
-                },
-                "error": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "model.CommonResponse-string": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "type": "string"
-                },
-                "error": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "model.CommonResponse-uint64": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "type": "integer"
-                },
-                "error": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
-                }
-            }
-        },
         "model.CreateFMResponse": {
             "type": "object",
             "properties": {
@@ -3441,101 +3285,15 @@ const docTemplate = `{
                 }
             }
         },
-        "model.Cron": {
-            "type": "object",
-            "properties": {
-                "command": {
-                    "type": "string"
-                },
-                "cover": {
-                    "description": "计划任务覆盖范围 (0:仅覆盖特定服务器 1:仅忽略特定服务器 2:由触发该计划任务的服务器执行)",
-                    "type": "integer"
-                },
-                "created_at": {
-                    "type": "string"
-                },
-                "cron_job_id": {
-                    "type": "integer"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "last_executed_at": {
-                    "description": "最后一次执行时间",
-                    "type": "string"
-                },
-                "last_result": {
-                    "description": "最后一次执行结果",
-                    "type": "boolean"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "notification_group_id": {
-                    "description": "指定通知方式的分组",
-                    "type": "integer"
-                },
-                "push_successful": {
-                    "description": "推送成功的通知",
-                    "type": "boolean"
-                },
-                "scheduler": {
-                    "description": "分钟 小时 天 月 星期",
-                    "type": "string"
-                },
-                "servers": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                },
-                "task_type": {
-                    "description": "0:计划任务 1:触发任务",
-                    "type": "integer"
-                },
-                "updated_at": {
-                    "type": "string"
-                }
-            }
-        },
-        "model.CronForm": {
-            "type": "object",
-            "properties": {
-                "command": {
-                    "type": "string"
-                },
-                "cover": {
-                    "type": "integer",
-                    "default": 0
-                },
-                "name": {
-                    "type": "string",
-                    "minLength": 1
-                },
-                "notification_group_id": {
-                    "type": "integer"
-                },
-                "push_successful": {
-                    "type": "boolean"
-                },
-                "scheduler": {
-                    "type": "string"
-                },
-                "servers": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                },
-                "task_type": {
-                    "description": "0:计划任务 1:触发任务",
-                    "type": "integer",
-                    "default": 0
-                }
-            }
-        },
         "model.CycleTransferStats": {
             "type": "object",
+            "required": [
+                "from",
+                "max",
+                "min",
+                "name",
+                "to"
+            ],
             "properties": {
                 "from": {
                     "type": "string"
@@ -3626,6 +3384,12 @@ const docTemplate = `{
         },
         "model.DDNSProfile": {
             "type": "object",
+            "required": [
+                "domains",
+                "max_retries",
+                "name",
+                "provider"
+            ],
             "properties": {
                 "access_id": {
                     "type": "string"
@@ -3682,6 +3446,10 @@ const docTemplate = `{
         },
         "model.DailyOnlineStat": {
             "type": "object",
+            "required": [
+                "date",
+                "online_seconds"
+            ],
             "properties": {
                 "date": {
                     "type": "string"
@@ -3693,6 +3461,11 @@ const docTemplate = `{
         },
         "model.DataPoint": {
             "type": "object",
+            "required": [
+                "delay",
+                "status",
+                "ts"
+            ],
             "properties": {
                 "delay": {
                     "type": "number"
@@ -3734,6 +3507,9 @@ const docTemplate = `{
         },
         "model.GPUStat": {
             "type": "object",
+            "required": [
+                "utilization"
+            ],
             "properties": {
                 "memory_total": {
                     "type": "integer"
@@ -3904,6 +3680,13 @@ const docTemplate = `{
         },
         "model.NAT": {
             "type": "object",
+            "required": [
+                "domain",
+                "enabled",
+                "host",
+                "name",
+                "server_id"
+            ],
             "properties": {
                 "created_at": {
                     "type": "string"
@@ -3954,8 +3737,30 @@ const docTemplate = `{
         },
         "model.Notification": {
             "type": "object",
+            "required": [
+                "channel",
+                "dingtalk_secret",
+                "dingtalk_webhook_url",
+                "name",
+                "request_body",
+                "request_header",
+                "request_method",
+                "request_type",
+                "serverchan_sendkey",
+                "url"
+            ],
             "properties": {
+                "channel": {
+                    "description": "0:webhook 1:钉钉 2:Server酱",
+                    "type": "integer"
+                },
                 "created_at": {
+                    "type": "string"
+                },
+                "dingtalk_secret": {
+                    "type": "string"
+                },
+                "dingtalk_webhook_url": {
                     "type": "string"
                 },
                 "format_metric_units": {
@@ -3979,6 +3784,9 @@ const docTemplate = `{
                 "request_type": {
                     "type": "integer"
                 },
+                "serverchan_sendkey": {
+                    "type": "string"
+                },
                 "updated_at": {
                     "type": "string"
                 },
@@ -3993,6 +3801,19 @@ const docTemplate = `{
         "model.NotificationForm": {
             "type": "object",
             "properties": {
+                "channel": {
+                    "type": "integer"
+                },
+                "clear_dingtalk_secret": {
+                    "description": "ClearDingtalkSecret 为 true 时显式清除已保存的加签密钥（从加签切回关键词\n模式）。普通编辑留空 dingtalk_secret 表示\"不修改\"，不会误清密钥。",
+                    "type": "boolean"
+                },
+                "dingtalk_secret": {
+                    "type": "string"
+                },
+                "dingtalk_webhook_url": {
+                    "type": "string"
+                },
                 "format_metric_units": {
                     "type": "boolean"
                 },
@@ -4012,6 +3833,9 @@ const docTemplate = `{
                 "request_type": {
                     "type": "integer"
                 },
+                "serverchan_sendkey": {
+                    "type": "string"
+                },
                 "skip_check": {
                     "type": "boolean"
                 },
@@ -4025,6 +3849,9 @@ const docTemplate = `{
         },
         "model.NotificationGroup": {
             "type": "object",
+            "required": [
+                "name"
+            ],
             "properties": {
                 "created_at": {
                     "type": "string"
@@ -4042,6 +3869,10 @@ const docTemplate = `{
         },
         "model.NotificationGroupForm": {
             "type": "object",
+            "required": [
+                "name",
+                "notifications"
+            ],
             "properties": {
                 "name": {
                     "type": "string",
@@ -4057,6 +3888,10 @@ const docTemplate = `{
         },
         "model.NotificationGroupResponseItem": {
             "type": "object",
+            "required": [
+                "group",
+                "notifications"
+            ],
             "properties": {
                 "group": {
                     "$ref": "#/definitions/model.NotificationGroup"
@@ -4079,6 +3914,21 @@ const docTemplate = `{
         },
         "model.OnlineHistoryResponse": {
             "type": "object",
+            "required": [
+                "currently_online",
+                "daily",
+                "days",
+                "max_days",
+                "online_rate",
+                "periods",
+                "server_id",
+                "server_name",
+                "timezone",
+                "total_online_seconds",
+                "tz_offset",
+                "window_end",
+                "window_start"
+            ],
             "properties": {
                 "currently_online": {
                     "type": "boolean"
@@ -4134,6 +3984,11 @@ const docTemplate = `{
         },
         "model.OnlinePeriod": {
             "type": "object",
+            "required": [
+                "end",
+                "ongoing",
+                "start"
+            ],
             "properties": {
                 "end": {
                     "type": "string"
@@ -4160,34 +4015,6 @@ const docTemplate = `{
                 }
             }
         },
-        "model.PaginatedResponse-array_model_OnlineUser-model_OnlineUser": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/model.Value-array_model_OnlineUser"
-                },
-                "error": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "model.PaginatedResponse-array_model_WAFApiMock-model_WAFApiMock": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/model.Value-array_model_WAFApiMock"
-                },
-                "error": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
-                }
-            }
-        },
         "model.Pagination": {
             "type": "object",
             "properties": {
@@ -4204,6 +4031,9 @@ const docTemplate = `{
         },
         "model.Profile": {
             "type": "object",
+            "required": [
+                "role"
+            ],
             "properties": {
                 "agent_secret": {
                     "type": "string"
@@ -4268,6 +4098,10 @@ const docTemplate = `{
         },
         "model.Rule": {
             "type": "object",
+            "required": [
+                "cover",
+                "type"
+            ],
             "properties": {
                 "cover": {
                     "description": "覆盖范围 RuleCoverAll/IgnoreAll",
@@ -4332,6 +4166,10 @@ const docTemplate = `{
         },
         "model.Server": {
             "type": "object",
+            "required": [
+                "display_index",
+                "name"
+            ],
             "properties": {
                 "created_at": {
                     "type": "string"
@@ -4459,6 +4297,9 @@ const docTemplate = `{
         },
         "model.ServerGroup": {
             "type": "object",
+            "required": [
+                "name"
+            ],
             "properties": {
                 "created_at": {
                     "type": "string"
@@ -4476,6 +4317,10 @@ const docTemplate = `{
         },
         "model.ServerGroupForm": {
             "type": "object",
+            "required": [
+                "name",
+                "servers"
+            ],
             "properties": {
                 "name": {
                     "type": "string",
@@ -4491,6 +4336,10 @@ const docTemplate = `{
         },
         "model.ServerGroupResponseItem": {
             "type": "object",
+            "required": [
+                "group",
+                "servers"
+            ],
             "properties": {
                 "group": {
                     "$ref": "#/definitions/model.ServerGroup"
@@ -4505,6 +4354,10 @@ const docTemplate = `{
         },
         "model.ServerMetricsDataPoint": {
             "type": "object",
+            "required": [
+                "ts",
+                "value"
+            ],
             "properties": {
                 "ts": {
                     "type": "integer"
@@ -4516,6 +4369,11 @@ const docTemplate = `{
         },
         "model.ServerMetricsResponse": {
             "type": "object",
+            "required": [
+                "data_points",
+                "metric",
+                "server_id"
+            ],
             "properties": {
                 "data_points": {
                     "type": "array",
@@ -4536,6 +4394,10 @@ const docTemplate = `{
         },
         "model.ServerServiceStats": {
             "type": "object",
+            "required": [
+                "server_id",
+                "stats"
+            ],
             "properties": {
                 "server_id": {
                     "type": "integer"
@@ -4573,6 +4435,13 @@ const docTemplate = `{
         },
         "model.ServerTransfer": {
             "type": "object",
+            "required": [
+                "from_user_id",
+                "initiator_id",
+                "server_id",
+                "status",
+                "to_user_id"
+            ],
             "properties": {
                 "acked_at": {
                     "type": "string"
@@ -4626,6 +4495,18 @@ const docTemplate = `{
         },
         "model.Service": {
             "type": "object",
+            "required": [
+                "cover",
+                "display_index",
+                "duration",
+                "max_latency",
+                "min_latency",
+                "name",
+                "notification_group_id",
+                "skip_servers",
+                "target",
+                "type"
+            ],
             "properties": {
                 "cover": {
                     "type": "integer"
@@ -4639,16 +4520,6 @@ const docTemplate = `{
                 },
                 "duration": {
                     "type": "integer"
-                },
-                "enable_trigger_task": {
-                    "type": "boolean"
-                },
-                "fail_trigger_tasks": {
-                    "description": "失败时执行的触发任务id",
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
                 },
                 "hide_for_guest": {
                     "description": "对游客隐藏",
@@ -4675,13 +4546,6 @@ const docTemplate = `{
                 },
                 "notify": {
                     "type": "boolean"
-                },
-                "recover_trigger_tasks": {
-                    "description": "恢复时执行的触发任务id",
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
                 },
                 "skip_servers": {
                     "type": "object",
@@ -4714,15 +4578,6 @@ const docTemplate = `{
                 "duration": {
                     "type": "integer"
                 },
-                "enable_trigger_task": {
-                    "type": "boolean"
-                },
-                "fail_trigger_tasks": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                },
                 "hide_for_guest": {
                     "type": "boolean"
                 },
@@ -4747,12 +4602,6 @@ const docTemplate = `{
                 "notify": {
                     "type": "boolean"
                 },
-                "recover_trigger_tasks": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                },
                 "skip_servers": {
                     "type": "object",
                     "additionalProperties": {
@@ -4769,6 +4618,10 @@ const docTemplate = `{
         },
         "model.ServiceHistoryResponse": {
             "type": "object",
+            "required": [
+                "servers",
+                "service_id"
+            ],
             "properties": {
                 "servers": {
                     "type": "array",
@@ -4786,6 +4639,12 @@ const docTemplate = `{
         },
         "model.ServiceHistorySummary": {
             "type": "object",
+            "required": [
+                "avg_delay",
+                "total_down",
+                "total_up",
+                "up_percent"
+            ],
             "properties": {
                 "avg_delay": {
                     "type": "number"
@@ -4809,6 +4668,15 @@ const docTemplate = `{
         },
         "model.ServiceInfos": {
             "type": "object",
+            "required": [
+                "avg_delay",
+                "created_at",
+                "display_index",
+                "monitor_id",
+                "monitor_name",
+                "server_id",
+                "server_name"
+            ],
             "properties": {
                 "avg_delay": {
                     "type": "array",
@@ -4859,6 +4727,12 @@ const docTemplate = `{
         },
         "model.ServiceResponseItem": {
             "type": "object",
+            "required": [
+                "current_down",
+                "current_up",
+                "total_down",
+                "total_up"
+            ],
             "properties": {
                 "current_down": {
                     "type": "integer"
@@ -4897,6 +4771,12 @@ const docTemplate = `{
         },
         "model.Setting": {
             "type": "object",
+            "required": [
+                "cover",
+                "ip_change_notification_group_id",
+                "language",
+                "site_name"
+            ],
             "properties": {
                 "admin_template": {
                     "type": "string"
@@ -5061,6 +4941,10 @@ const docTemplate = `{
         },
         "model.SettingResponse": {
             "type": "object",
+            "required": [
+                "config",
+                "tsdb_enabled"
+            ],
             "properties": {
                 "config": {
                     "$ref": "#/definitions/model.Setting"
@@ -5143,6 +5027,9 @@ const docTemplate = `{
         },
         "model.User": {
             "type": "object",
+            "required": [
+                "role"
+            ],
             "properties": {
                 "agent_secret": {
                     "type": "string"
@@ -5178,34 +5065,6 @@ const docTemplate = `{
                 },
                 "username": {
                     "type": "string"
-                }
-            }
-        },
-        "model.Value-array_model_OnlineUser": {
-            "type": "object",
-            "properties": {
-                "pagination": {
-                    "$ref": "#/definitions/model.Pagination"
-                },
-                "value": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/model.OnlineUser"
-                    }
-                }
-            }
-        },
-        "model.Value-array_model_WAFApiMock": {
-            "type": "object",
-            "properties": {
-                "pagination": {
-                    "$ref": "#/definitions/model.Pagination"
-                },
-                "value": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/model.WAFApiMock"
-                    }
                 }
             }
         },
