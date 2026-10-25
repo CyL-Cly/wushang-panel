@@ -97,7 +97,7 @@ func InitDBFromPath(path string) error {
 	}
 	err = DB.AutoMigrate(model.Server{}, model.User{}, model.ServerGroup{}, model.NotificationGroup{},
 		model.Notification{}, model.AlertRule{}, model.Service{}, model.NotificationGroupNotification{},
-		model.Cron{}, model.Transfer{}, model.ServerGroupServer{},
+		model.Transfer{}, model.ServerGroupServer{},
 		model.NAT{}, model.DDNSProfile{}, model.NotificationGroupNotification{},
 		model.WAF{}, model.Oauth2Bind{}, model.ServerTransfer{}, model.JWTSession{},
 		model.APIToken{}, model.MCPAuditLog{}, model.OnlineSession{})

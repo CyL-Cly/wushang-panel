@@ -22,7 +22,6 @@ import ProtectedRoute from "./routes/protect"
 // cmd/dashboard/controller/controller.go (frontendPageUrlRegistry), otherwise a
 // hard refresh on the new path returns 404 even though client-side navigation
 // works.
-const CronPage = lazy(() => import("./routes/cron"))
 const LoginPage = lazy(() => import("./routes/login"))
 const ServerPage = lazy(() => import("./routes/server"))
 const ServicePage = lazy(() => import("./routes/service"))
@@ -83,16 +82,6 @@ const router = createBrowserRouter([
                     <ServerProvider withServer>
                         <NotificationProvider withNotifierGroup>
                             <ServicePage />
-                        </NotificationProvider>
-                    </ServerProvider>
-                ),
-            },
-            {
-                path: "/dashboard/cron",
-                element: (
-                    <ServerProvider withServer>
-                        <NotificationProvider withNotifierGroup>
-                            <CronPage />
                         </NotificationProvider>
                     </ServerProvider>
                 ),

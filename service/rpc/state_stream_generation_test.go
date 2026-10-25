@@ -18,7 +18,7 @@ import (
 func TestReportSystemState_HandlerWaitsForMetricsBeforeReceipt(t *testing.T) {
 	// Given
 	reporter := requestTaskSecurityServer(9, 200, "ffffffff-ffff-ffff-ffff-ffffffffffff")
-	setupRequestTaskSecurityFixture(t, []*model.Server{reporter}, nil, map[uint64]model.UserInfo{200: {Role: model.RoleMember}}, map[string]uint64{"reporter-secret": 200})
+	setupRequestTaskSecurityFixture(t, []*model.Server{reporter}, map[uint64]model.UserInfo{200: {Role: model.RoleMember}}, map[string]uint64{"reporter-secret": 200})
 	stop := make(chan struct{})
 	stream := &stateGenerationHandlerStream{
 		ctx:    metadata.NewIncomingContext(context.Background(), metadata.Pairs("client_secret", "reporter-secret", "client_uuid", reporter.UUID)),
@@ -99,7 +99,7 @@ func (s *stateGenerationHandlerStream) RecvMsg(any) error            { return ni
 func TestReportSystemState_HandlerOldStreamCannotClearNewerState(t *testing.T) {
 	// Given
 	reporter := requestTaskSecurityServer(7, 200, "eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee")
-	setupRequestTaskSecurityFixture(t, []*model.Server{reporter}, nil, map[uint64]model.UserInfo{
+	setupRequestTaskSecurityFixture(t, []*model.Server{reporter}, map[uint64]model.UserInfo{
 		200: {Role: model.RoleMember},
 	}, map[string]uint64{"reporter-secret": 200})
 	oldStop := make(chan struct{})

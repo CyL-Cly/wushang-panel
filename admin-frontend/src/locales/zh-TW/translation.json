@@ -317,5 +317,13 @@
     "CopiedToClipboard": "已複製到剪貼簿",
     "ClipboardWriteFailed": "寫入剪貼簿失敗",
     "PastedFromClipboard": "已從剪貼簿貼上",
-    "ClipboardReadFailed": "讀取剪貼簿失敗"
+    "ClipboardReadFailed": "讀取剪貼簿失敗",
+    "NotificationChannel": "通知渠道",
+    "ChannelWebhook": "Webhook",
+    "ChannelDingTalk": "釘釘機器人",
+    "ChannelServerChan": "Server醬",
+    "DingtalkWebhookURL": "釘釘 Webhook 地址",
+    "DingtalkSecret": "釘釘加簽密鑰 Secret（可選）",
+    "ServerchanSendKey": "Server醬 SendKey",
+    "DingtalkKeywordHint": "提示：釘釘機器人安全設置需將自定義關鍵詞設為 #NEZHA#，或啟用加簽並填寫 Secret"
 }

@@ -56,11 +56,6 @@ const (
 	ScopeAlertRuleWrite  = "nezha:alertrule:write"
 	ScopeAlertRuleDelete = "nezha:alertrule:delete"
 
-	ScopeCronRead   = "nezha:cron:read"
-	ScopeCronWrite  = "nezha:cron:write"
-	ScopeCronDelete = "nezha:cron:delete"
-	ScopeCronExec   = "nezha:cron:exec"
-
 	ScopeDDNSRead   = "nezha:ddns:read"
 	ScopeDDNSWrite  = "nezha:ddns:write"
 	ScopeDDNSDelete = "nezha:ddns:delete"
@@ -89,7 +84,6 @@ var AllScopes = []string{
 	ScopeServerRead, ScopeServerWrite, ScopeServerDelete, ScopeServerExec,
 	ScopeServiceRead, ScopeServiceWrite, ScopeServiceDelete,
 	ScopeAlertRuleRead, ScopeAlertRuleWrite, ScopeAlertRuleDelete,
-	ScopeCronRead, ScopeCronWrite, ScopeCronDelete, ScopeCronExec,
 	ScopeDDNSRead, ScopeDDNSWrite, ScopeDDNSDelete,
 	ScopeNATRead, ScopeNATWrite, ScopeNATDelete,
 	ScopeNotificationRead, ScopeNotificationWrite, ScopeNotificationDelete,
@@ -100,7 +94,6 @@ var AllScopes = []string{
 	"nezha:server:*",
 	"nezha:service:*",
 	"nezha:alertrule:*",
-	"nezha:cron:*",
 	"nezha:ddns:*",
 	"nezha:nat:*",
 	"nezha:notification:*",

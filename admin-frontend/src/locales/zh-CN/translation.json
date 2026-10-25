@@ -317,5 +317,13 @@
     "NameRequired": "名称必填。",
     "Revoke": "吊销",
     "Copied": "已复制到剪贴板",
-    "Scopes": "权限"
+    "Scopes": "权限",
+    "NotificationChannel": "通知渠道",
+    "ChannelWebhook": "Webhook",
+    "ChannelDingTalk": "钉钉机器人",
+    "ChannelServerChan": "Server酱",
+    "DingtalkWebhookURL": "钉钉 Webhook 地址",
+    "DingtalkSecret": "钉钉加签密钥 Secret（可选）",
+    "ServerchanSendKey": "Server酱 SendKey",
+    "DingtalkKeywordHint": "提示：钉钉机器人安全设置需将自定义关键词设为 #NEZHA#，或启用加签并填写 Secret"
 }

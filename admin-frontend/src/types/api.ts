@@ -20,12 +20,6 @@ export interface GithubComNezhahqNezhaModelCommonResponseArrayModelAlertRule {
     success: boolean
 }
 
-export interface GithubComNezhahqNezhaModelCommonResponseArrayModelCron {
-    data: ModelCron[]
-    error: string
-    success: boolean
-}
-
 export interface GithubComNezhahqNezhaModelCommonResponseArrayModelDDNSProfile {
     data: ModelDDNSProfile[]
     error: string
@@ -159,14 +153,10 @@ export interface GithubComNezhahqNezhaModelValueArrayModelWAFApiMock {
 export interface ModelAlertRule {
     created_at: string
     enable: boolean
-    /** 失败时执行的触发任务id */
-    fail_trigger_tasks: number[]
     id: number
     name: string
     /** 该报警规则所在的通知组 */
     notification_group_id: number
-    /** 恢复时执行的触发任务id */
-    recover_trigger_tasks: number[]
     rules: ModelRule[]
     /** 触发模式: 0-始终触发(默认) 1-单次触发 */
     trigger_mode: number
@@ -175,13 +165,9 @@ export interface ModelAlertRule {
 
 export interface ModelAlertRuleForm {
     enable?: boolean
-    /** 失败时触发的任务id */
-    fail_trigger_tasks: number[]
     /** @minLength 1 */
     name: string
     notification_group_id: number
-    /** 恢复时触发的任务id */
-    recover_trigger_tasks: number[]
     rules: ModelRule[]
     /** @default 0 */
     trigger_mode: number
@@ -240,47 +226,6 @@ export interface ModelCreateTerminalResponse {
     server_id: number
     server_name: string
     session_id: string
-}
-
-export interface ModelCron {
-    command: string
-    /** 计划任务覆盖范围 (0:仅覆盖特定服务器 1:仅忽略特定服务器 2:由触发该计划任务的服务器执行) */
-    cover: number
-    created_at: string
-    cron_job_id: number
-    id: number
-    /** 最后一次执行时间 */
-    last_executed_at: string
-    /** 最后一次执行结果 */
-    last_result: boolean
-    name: string
-    /** 指定通知方式的分组 */
-    notification_group_id: number
-    /** 推送成功的通知 */
-    push_successful: boolean
-    /** 分钟 小时 天 月 星期 */
-    scheduler: string
-    servers: number[]
-    /** 0:计划任务 1:触发任务 */
-    task_type: number
-    updated_at: string
-}
-
-export interface ModelCronForm {
-    command?: string
-    /** @default 0 */
-    cover: number
-    /** @minLength 1 */
-    name: string
-    notification_group_id: number
-    push_successful?: boolean
-    scheduler: string
-    servers: number[]
-    /**
-     * 0:计划任务 1:触发任务
-     * @default 0
-     */
-    task_type: number
 }
 
 export interface ModelCycleTransferStats {
@@ -418,9 +363,13 @@ export interface ModelNATForm {
 }
 
 export interface ModelNotification {
+    channel: number
     created_at: string
     id: number
     name: string
+    dingtalk_webhook_url: string
+    dingtalk_secret: string
+    serverchan_sendkey: string
     request_body: string
     request_header: string
     request_method: number
@@ -434,6 +383,10 @@ export interface ModelNotification {
 export interface ModelNotificationForm {
     /** @minLength 1 */
     name: string
+    channel: number
+    dingtalk_webhook_url?: string
+    dingtalk_secret?: string
+    serverchan_sendkey?: string
     request_body: string
     request_header: string
     request_method: number
@@ -631,9 +584,6 @@ export interface ModelService {
     /** 展示排序，越大越靠前 */
     display_index: number
     duration: number
-    enable_trigger_task: boolean
-    /** 失败时执行的触发任务id */
-    fail_trigger_tasks: number[]
     /** 对游客隐藏 */
     hide_for_guest: boolean
     id: number
@@ -644,8 +594,6 @@ export interface ModelService {
     /** 当前服务监控所属的通知组 ID */
     notification_group_id: number
     notify: boolean
-    /** 恢复时执行的触发任务id */
-    recover_trigger_tasks: number[]
     skip_servers: Record<string, boolean>
     target: string
     type: number
@@ -657,8 +605,6 @@ export interface ModelServiceForm {
     /** 展示排序，越大越靠前 */
     display_index: number
     duration: number
-    enable_trigger_task?: boolean
-    fail_trigger_tasks: number[]
     hide_for_guest?: boolean
     latency_notify?: boolean
     /** @default 0 */
@@ -669,7 +615,6 @@ export interface ModelServiceForm {
     name: string
     notification_group_id: number
     notify?: boolean
-    recover_trigger_tasks: number[]
     skip_servers: Record<string, boolean>
     target: string
     type: number

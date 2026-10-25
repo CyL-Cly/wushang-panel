@@ -31,7 +31,6 @@ import {
 } from "@/components/ui/select"
 import { IconButton } from "@/components/xui/icon-button"
 import { useNotification } from "@/hooks/useNotfication"
-import { conv } from "@/lib/utils"
 import { ModelAlertRule } from "@/types"
 import { triggerModes } from "@/types"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -82,10 +81,6 @@ const alertRuleFormSchema = z.object({
         },
     ),
     rules: z.array(ruleSchema),
-    fail_trigger_tasks: z.array(z.number()),
-    fail_trigger_tasks_raw: z.string(),
-    recover_trigger_tasks: z.array(z.number()),
-    recover_trigger_tasks_raw: z.string(),
     notification_group_id: z.coerce.number().int(),
     trigger_mode: z.coerce.number().int().min(0),
     enable: z.boolean().optional(),
@@ -104,17 +99,11 @@ export const AlertRuleCard: React.FC<AlertRuleCardProps> = ({ data, mutate }) =>
             ? {
                   ...data,
                   rules_raw: JSON.stringify(data.rules),
-                  fail_trigger_tasks_raw: conv.arrToStr(data.fail_trigger_tasks),
-                  recover_trigger_tasks_raw: conv.arrToStr(data.recover_trigger_tasks),
               }
             : {
                   name: "",
                   rules_raw: "",
                   rules: [],
-                  fail_trigger_tasks: [],
-                  fail_trigger_tasks_raw: "",
-                  recover_trigger_tasks: [],
-                  recover_trigger_tasks_raw: "",
                   notification_group_id: 0,
                   trigger_mode: 0,
               },
@@ -152,8 +141,6 @@ export const AlertRuleCard: React.FC<AlertRuleCardProps> = ({ data, mutate }) =>
 
     const onSubmit = async (values: AlertRuleFormData) => {
         values.rules = z.array(ruleSchema).parse(JSON.parse(values.rules_raw))
-        values.fail_trigger_tasks = conv.strToArr(values.fail_trigger_tasks_raw).map(Number)
-        values.recover_trigger_tasks = conv.strToArr(values.recover_trigger_tasks_raw).map(Number)
         const requiredFields = { ...values }
         delete (requiredFields as Record<string, unknown>).rules_raw
         try {
@@ -671,38 +658,6 @@ export const AlertRuleCard: React.FC<AlertRuleCardProps> = ({ data, mutate }) =>
                                                     ))}
                                                 </SelectContent>
                                             </Select>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                                <FormField
-                                    control={form.control}
-                                    name="fail_trigger_tasks_raw"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>
-                                                {t("TasksToTriggerOnAlert") +
-                                                    t("SeparateWithComma")}
-                                            </FormLabel>
-                                            <FormControl>
-                                                <Input placeholder="1,2,3" {...field} />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                                <FormField
-                                    control={form.control}
-                                    name="recover_trigger_tasks_raw"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>
-                                                {t("TasksToTriggerAfterRecovery") +
-                                                    t("SeparateWithComma")}
-                                            </FormLabel>
-                                            <FormControl>
-                                                <Input placeholder="1,2,3" {...field} />
-                                            </FormControl>
                                             <FormMessage />
                                         </FormItem>
                                     )}

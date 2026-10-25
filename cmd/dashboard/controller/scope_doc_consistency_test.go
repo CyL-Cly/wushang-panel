@@ -72,12 +72,6 @@ func canonicalRoutes() []scopedRoute {
 		{"PATCH", "/api/v1/alert-rule/{id}", "nezha:alertrule:write"},
 		{"POST", "/api/v1/batch-delete/alert-rule", "nezha:alertrule:delete"},
 
-		{"GET", "/api/v1/cron", "nezha:cron:read"},
-		{"POST", "/api/v1/cron", "nezha:cron:write"},
-		{"PATCH", "/api/v1/cron/{id}", "nezha:cron:write"},
-		{"POST", "/api/v1/cron/{id}/manual", "nezha:cron:exec"},
-		{"POST", "/api/v1/batch-delete/cron", "nezha:cron:delete"},
-
 		{"GET", "/api/v1/ddns", "nezha:ddns:read"},
 		{"GET", "/api/v1/ddns/providers", "nezha:ddns:read"},
 		{"POST", "/api/v1/ddns", "nezha:ddns:write"},

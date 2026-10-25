@@ -3,13 +3,11 @@ package rpc
 import (
 	"context"
 	"errors"
-	"fmt"
 	"log"
 	"sync"
 	"time"
 
 	"github.com/CyL-Cly/wushang-panel/pkg/tsdb"
-	"github.com/jinzhu/copier"
 
 	"github.com/CyL-Cly/wushang-panel/model"
 	pb "github.com/CyL-Cly/wushang-panel/proto"
@@ -127,27 +125,6 @@ func (s *NezhaHandler) RequestTask(stream pb.NezhaService_RequestTaskServer) err
 			return err
 		}
 		switch result.GetType() {
-		case model.TaskTypeCommand:
-			// 处理上报的计划任务
-			cr, _ := singleton.CronShared.Get(result.GetId())
-			// 任务结果 ID 来自 agent，必须确认该 cron 本应派发给当前 reporter。
-			if singleton.CanReportCronResult(cr, server) {
-				// 保存当前服务器状态信息
-				var curServer model.Server
-				copier.Copy(&curServer, server)
-				if cr.PushSuccessful && result.GetSuccessful() {
-					singleton.NotificationShared.SendNotification(cr.NotificationGroupID, fmt.Sprintf("[%s] %s, %s\n%s", singleton.Localizer.T("Scheduled Task Executed Successfully"),
-						cr.Name, server.Name, result.GetData()), "", &curServer)
-				}
-				if !result.GetSuccessful() {
-					singleton.NotificationShared.SendNotification(cr.NotificationGroupID, fmt.Sprintf("[%s] %s, %s\n%s", singleton.Localizer.T("Scheduled Task Executed Failed"),
-						cr.Name, server.Name, result.GetData()), "", &curServer)
-				}
-				singleton.DB.Model(cr).Updates(model.Cron{
-					LastExecutedAt: time.Now().Add(time.Second * -1 * time.Duration(result.GetDelay())),
-					LastResult:     result.GetSuccessful(),
-				})
-			}
 		case model.TaskTypeReportConfig:
 			if len(server.ConfigCache) < 1 {
 				if !result.GetSuccessful() {

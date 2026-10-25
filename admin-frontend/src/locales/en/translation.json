@@ -51,7 +51,7 @@
     "Config": "Config",
     "Note": "Note",
     "Success": "Success",
-    "Done": "Finish",
+    "Done": "Done",
     "Offline": "Offline",
     "Failure": "Fail",
     "Loading": "Loading",
@@ -316,8 +316,14 @@
     "ApiTokenExpiryInvalid": "Days must be between 0 and 3650.",
     "NameRequired": "Name is required.",
     "Revoke": "Revoke",
-    "Copy": "Copy",
     "Copied": "Copied to clipboard",
-    "Done": "Done",
-    "Scopes": "Scopes"
+    "Scopes": "Scopes",
+    "NotificationChannel": "Notification Channel",
+    "ChannelWebhook": "Webhook",
+    "ChannelDingTalk": "DingTalk Robot",
+    "ChannelServerChan": "ServerChan",
+    "DingtalkWebhookURL": "DingTalk Webhook URL",
+    "DingtalkSecret": "DingTalk Signing Secret (optional)",
+    "ServerchanSendKey": "ServerChan SendKey",
+    "DingtalkKeywordHint": "Note: set the DingTalk robot custom keyword to #NEZHA#, or enable signing and fill in the secret"
 }

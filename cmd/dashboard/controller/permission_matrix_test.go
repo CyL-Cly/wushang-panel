@@ -14,47 +14,15 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestValidateRuleAcceptsMemberSelfTriggerTasks(t *testing.T) {
+// Trigger-task binding was removed along with the cron feature; rules without
+// trigger tasks must still validate cleanly.
+func TestValidateRuleAcceptsRuleWithoutTriggerTasks(t *testing.T) {
 	ctx := newMemberValidationContext(t)
 	rule := &model.AlertRule{
 		Common:              model.Common{UserID: 200},
 		Name:                "member alert",
 		Rules:               []*model.Rule{{Type: "offline", Duration: 3}},
-		FailTriggerTasks:    []uint64{43},
-		RecoverTriggerTasks: []uint64{43},
-	}
-	assert.NoError(t, validateRule(ctx, rule))
-}
-
-func TestValidateRuleAcceptsAdminCrossUserTriggerTasks(t *testing.T) {
-	ctx := newAdminValidationContext(t)
-	rule := &model.AlertRule{
-		Common:              model.Common{UserID: 1},
-		Name:                "admin alert",
-		Rules:               []*model.Rule{{Type: "offline", Duration: 3}},
-		FailTriggerTasks:    []uint64{43},
-		RecoverTriggerTasks: []uint64{43},
-	}
-	assert.NoError(t, validateRule(ctx, rule))
-}
-
-func TestValidateRuleAcceptsEmptyTriggerTasks(t *testing.T) {
-	ctx := newMemberValidationContext(t)
-	rule := &model.AlertRule{
-		Common: model.Common{UserID: 200},
-		Name:   "member alert",
-		Rules:  []*model.Rule{{Type: "offline", Duration: 3}},
-	}
-	assert.NoError(t, validateRule(ctx, rule))
-}
-
-func TestValidateRuleAcceptsUnknownTriggerTaskID(t *testing.T) {
-	ctx := newMemberValidationContext(t)
-	rule := &model.AlertRule{
-		Common:           model.Common{UserID: 200},
-		Name:             "member alert",
-		Rules:            []*model.Rule{{Type: "offline", Duration: 3}},
-		FailTriggerTasks: []uint64{9999},
+		NotificationGroupID: 8,
 	}
 	assert.NoError(t, validateRule(ctx, rule))
 }

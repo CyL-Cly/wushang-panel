@@ -44,7 +44,7 @@ func TestCleanMonitorHistoryWithoutRulesDeletesAllTransfers(t *testing.T) {
 func TestCleanMonitorHistoryPreservesTransfersWhenAlertRulesCannotBeLoaded(t *testing.T) {
 	setupCleanMonitorHistoryTestDB(t)
 	require.NoError(t, DB.Create(&model.Transfer{ServerID: 1, In: 1}).Error)
-	require.NoError(t, DB.Exec("INSERT INTO alert_rules (id, name, rules_raw, fail_trigger_tasks_raw, recover_trigger_tasks_raw) VALUES (1, 'broken', '{', '[]', '[]')").Error)
+	require.NoError(t, DB.Exec("INSERT INTO alert_rules (id, name, rules_raw) VALUES (1, 'broken', '{')").Error)
 
 	var alerts []model.AlertRule
 	require.Error(t, DB.Find(&alerts).Error, "precondition: malformed rules_raw must fail AlertRule.AfterFind")

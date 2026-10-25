@@ -226,18 +226,6 @@ func TestServerDeleteCancelsAlertDelivery(t *testing.T) {
 	}
 }
 
-func TestAlwaysAlertContinuesFailureTriggerTasks(t *testing.T) {
-	if !shouldRunAlertFailTasks(model.ModeAlwaysTrigger, false) {
-		t.Fatal("always mode stopped failure trigger tasks after the initial incident")
-	}
-	if shouldRunAlertFailTasks(model.ModeOnetimeTrigger, false) {
-		t.Fatal("one-time mode repeated failure trigger tasks")
-	}
-	if !shouldRunAlertFailTasks(model.ModeOnetimeTrigger, true) {
-		t.Fatal("one-time mode skipped failure trigger tasks for a new incident")
-	}
-}
-
 func TestAlertDeliveryRetriesFailureAndStopsAfterSuccess(t *testing.T) {
 	cancel := make(chan struct{})
 	done := make(chan struct{})

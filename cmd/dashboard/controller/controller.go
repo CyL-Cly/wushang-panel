@@ -181,12 +181,6 @@ func routers(r *gin.Engine, frontendDist fs.FS) {
 	auth.PATCH("/alert-rule/:id", restScopeMiddleware(model.ScopeAlertRuleWrite), commonHandler(updateAlertRule))
 	auth.POST("/batch-delete/alert-rule", restScopeMiddleware(model.ScopeAlertRuleDelete), commonHandler(batchDeleteAlertRule))
 
-	auth.GET("/cron", restScopeMiddleware(model.ScopeCronRead), listHandler(listCron))
-	auth.POST("/cron", restScopeMiddleware(model.ScopeCronWrite), commonHandler(createCron))
-	auth.PATCH("/cron/:id", restScopeMiddleware(model.ScopeCronWrite), commonHandler(updateCron))
-	auth.POST("/cron/:id/manual", restScopeMiddleware(model.ScopeCronExec), commonHandler(manualTriggerCron))
-	auth.POST("/batch-delete/cron", restScopeMiddleware(model.ScopeCronDelete), commonHandler(batchDeleteCron))
-
 	auth.GET("/ddns", restScopeMiddleware(model.ScopeDDNSRead), listHandler(listDDNS))
 	auth.GET("/ddns/providers", restScopeMiddleware(model.ScopeDDNSRead), commonHandler(listProviders))
 	auth.POST("/ddns", restScopeMiddleware(model.ScopeDDNSWrite), commonHandler(createDDNS))
@@ -538,7 +532,6 @@ func fallbackToFrontend(frontendDist fs.FS) func(*gin.Context) {
 		regexp.MustCompile(`^/dashboard/$`),
 		regexp.MustCompile(`^/dashboard/login$`),
 		regexp.MustCompile(`^/dashboard/service$`),
-		regexp.MustCompile(`^/dashboard/cron$`),
 		regexp.MustCompile(`^/dashboard/notification$`),
 		regexp.MustCompile(`^/dashboard/alert-rule$`),
 		regexp.MustCompile(`^/dashboard/ddns$`),

@@ -509,9 +509,6 @@ func createService(c *gin.Context) (uint64, error) {
 	m.MinLatency = mf.MinLatency
 	m.MaxLatency = mf.MaxLatency
 	m.HideForGuest = mf.HideForGuest
-	m.EnableTriggerTask = mf.EnableTriggerTask
-	m.RecoverTriggerTasks = mf.RecoverTriggerTasks
-	m.FailTriggerTasks = mf.FailTriggerTasks
 
 	if err := validateServers(c, &m); err != nil {
 		return 0, err
@@ -581,9 +578,6 @@ func updateService(c *gin.Context) (any, error) {
 	m.MinLatency = mf.MinLatency
 	m.MaxLatency = mf.MaxLatency
 	m.HideForGuest = mf.HideForGuest
-	m.EnableTriggerTask = mf.EnableTriggerTask
-	m.RecoverTriggerTasks = mf.RecoverTriggerTasks
-	m.FailTriggerTasks = mf.FailTriggerTasks
 
 	if err := validateServers(c, &m); err != nil {
 		return 0, err
@@ -652,16 +646,6 @@ func validateServers(c *gin.Context, ss *model.Service) error {
 	}
 
 	if err := rejectImplicitServiceCoverForLimitedPAT(c, ss.Cover, ss.SkipServers, ss.GetUserID()); err != nil {
-		return err
-	}
-
-	if !singleton.CronShared.CheckPermission(c, slices.Values(ss.FailTriggerTasks)) {
-		return singleton.Localizer.ErrorT("permission denied")
-	}
-	if !singleton.CronShared.CheckPermission(c, slices.Values(ss.RecoverTriggerTasks)) {
-		return singleton.Localizer.ErrorT("permission denied")
-	}
-	if err := enforcePATTriggerTaskScope(c, ss.FailTriggerTasks, ss.RecoverTriggerTasks); err != nil {
 		return err
 	}
 

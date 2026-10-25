@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"slices"
 	"strconv"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/copier"
@@ -39,6 +40,9 @@ func listNotification(c *gin.Context) ([]*model.Notification, error) {
 		n.URL = ""
 		n.RequestHeader = ""
 		n.RequestBody = ""
+		n.DingtalkWebhookURL = ""
+		n.DingtalkSecret = ""
+		n.ServerchanSendKey = ""
 	}
 	return notifications, nil
 }
@@ -63,15 +67,23 @@ func createNotification(c *gin.Context) (uint64, error) {
 	var n model.Notification
 	n.UserID = getUid(c)
 	n.Name = nf.Name
+	n.Channel = nf.Channel
 	n.RequestMethod = nf.RequestMethod
 	n.RequestType = nf.RequestType
 	n.RequestHeader = nf.RequestHeader
 	n.RequestBody = nf.RequestBody
 	n.URL = nf.URL
+	n.DingtalkWebhookURL = nf.DingtalkWebhookURL
+	n.DingtalkSecret = nf.DingtalkSecret
+	n.ServerchanSendKey = nf.ServerchanSendKey
 	verifyTLS := nf.VerifyTLS
 	n.VerifyTLS = &verifyTLS
 	formatMetricUnits := nf.FormatMetricUnits
 	n.FormatMetricUnits = &formatMetricUnits
+
+	if err := validateNotificationChannel(&n); err != nil {
+		return 0, err
+	}
 
 	ns := model.NotificationServerBundle{
 		Notification: &n,
@@ -126,6 +138,7 @@ func updateNotification(c *gin.Context) (any, error) {
 	}
 
 	n.Name = nf.Name
+	n.Channel = nf.Channel
 	n.RequestMethod = nf.RequestMethod
 	n.RequestType = nf.RequestType
 	verifyTLS := nf.VerifyTLS
@@ -142,6 +155,18 @@ func updateNotification(c *gin.Context) (any, error) {
 	}
 	if nf.RequestBody != "" {
 		n.RequestBody = nf.RequestBody
+	}
+	if nf.DingtalkWebhookURL != "" {
+		n.DingtalkWebhookURL = nf.DingtalkWebhookURL
+	}
+	// 加签 Secret 允许主动清空（从加签切回关键词模式）；Webhook 与 SendKey 留空=不改。
+	n.DingtalkSecret = nf.DingtalkSecret
+	if nf.ServerchanSendKey != "" {
+		n.ServerchanSendKey = nf.ServerchanSendKey
+	}
+
+	if err := validateNotificationChannel(&n); err != nil {
+		return nil, err
 	}
 
 	ns := model.NotificationServerBundle{
@@ -204,4 +229,19 @@ func batchDeleteNotification(c *gin.Context) (any, error) {
 
 	singleton.NotificationShared.Delete(n)
 	return nil, nil
+}
+
+// validateNotificationChannel 按渠道校验必填凭据，避免入库后测试发送才报错。
+func validateNotificationChannel(n *model.Notification) error {
+	switch n.Channel {
+	case model.NotificationChannelDingtalk:
+		if strings.TrimSpace(n.DingtalkWebhookURL) == "" {
+			return singleton.Localizer.ErrorT("dingtalk webhook url is required")
+		}
+	case model.NotificationChannelServerchan:
+		if strings.TrimSpace(n.ServerchanSendKey) == "" {
+			return singleton.Localizer.ErrorT("serverchan sendkey is required")
+		}
+	}
+	return nil
 }

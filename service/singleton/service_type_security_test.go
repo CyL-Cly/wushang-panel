@@ -20,8 +20,8 @@ func TestServiceSentinelQuarantinesInvalidPersistedTypes(t *testing.T) {
 	ss := newServiceMonitorSecurityHarness(t)
 
 	insert := `INSERT INTO services
-		(id, user_id, name, type, target, duration, cover, skip_servers_raw, fail_trigger_tasks_raw, recover_trigger_tasks_raw)
-		VALUES (?, 100, ?, ?, 'example.invalid:443', 3600, ?, '{}', '[]', '[]')`
+		(id, user_id, name, type, target, duration, cover, skip_servers_raw)
+		VALUES (?, 100, ?, ?, 'example.invalid:443', 3600, ?, '{}')`
 	require.NoError(t, DB.Exec(insert, 91, "legacy-command", model.TaskTypeCommand, model.ServiceCoverIgnoreAll).Error)
 	require.NoError(t, DB.Exec(insert, 92, "legacy-apply-config", model.TaskTypeApplyConfig, model.ServiceCoverIgnoreAll).Error)
 	require.NoError(t, DB.Exec(insert, 93, "valid-probe", model.TaskTypeTCPPing, model.ServiceCoverIgnoreAll).Error)

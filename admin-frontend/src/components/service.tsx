@@ -56,18 +56,13 @@ const serviceFormSchema = z.object({
     cover: z.coerce.number().int().min(0),
     display_index: z.coerce.number().int(),
     duration: z.coerce.number().int().min(30),
-    enable_trigger_task: asOptionalField(z.boolean()),
     hide_for_guest: asOptionalField(z.boolean()),
-    fail_trigger_tasks: z.array(z.number()),
-    fail_trigger_tasks_raw: z.string(),
     latency_notify: asOptionalField(z.boolean()),
     max_latency: z.coerce.number().int().min(0),
     min_latency: z.coerce.number().int().min(0),
     name: z.string().min(1),
     notification_group_id: z.coerce.number().int(),
     notify: asOptionalField(z.boolean()),
-    recover_trigger_tasks: z.array(z.number()),
-    recover_trigger_tasks_raw: z.string(),
     skip_servers: z.record(z.string(), z.boolean()),
     skip_servers_raw: z.array(z.string()),
     target: z.string(),
@@ -81,8 +76,6 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ data, mutate }) => {
         defaultValues: data
             ? {
                   ...data,
-                  fail_trigger_tasks_raw: conv.arrToStr(data.fail_trigger_tasks),
-                  recover_trigger_tasks_raw: conv.arrToStr(data.recover_trigger_tasks),
                   skip_servers_raw: conv.recordToStrArr(data.skip_servers ? data.skip_servers : {}),
               }
             : {
@@ -95,10 +88,6 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ data, mutate }) => {
                   min_latency: 0.0,
                   duration: 30,
                   notification_group_id: 0,
-                  fail_trigger_tasks: [],
-                  fail_trigger_tasks_raw: "",
-                  recover_trigger_tasks: [],
-                  recover_trigger_tasks_raw: "",
                   skip_servers: {},
                   skip_servers_raw: [],
               },
@@ -111,8 +100,6 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ data, mutate }) => {
 
     const onSubmit = async (values: any) => {
         values.skip_servers = conv.arrToRecord(values.skip_servers_raw)
-        values.fail_trigger_tasks = conv.strToArr(values.fail_trigger_tasks_raw).map(Number)
-        values.recover_trigger_tasks = conv.strToArr(values.recover_trigger_tasks_raw).map(Number)
         const requiredFields = { ...values }
         delete (requiredFields as Record<string, unknown>).skip_servers_raw
         try {
@@ -399,58 +386,6 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ data, mutate }) => {
                                                         {t("EnableLatencyNotification")}
                                                     </Label>
                                                 </div>
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                                <FormField
-                                    control={form.control}
-                                    name="enable_trigger_task"
-                                    render={({ field }) => (
-                                        <FormItem className="flex items-center space-x-2">
-                                            <FormControl>
-                                                <div className="flex items-center gap-2">
-                                                    <Checkbox
-                                                        checked={field.value}
-                                                        onCheckedChange={field.onChange}
-                                                    />
-                                                    <Label className="text-sm">
-                                                        {t("EnableTriggerTask")}
-                                                    </Label>
-                                                </div>
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                                <FormField
-                                    control={form.control}
-                                    name="fail_trigger_tasks_raw"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>
-                                                {t("TasksToTriggerOnAlert") +
-                                                    t("SeparateWithComma")}
-                                            </FormLabel>
-                                            <FormControl>
-                                                <Input placeholder="1,2,3" {...field} />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                                <FormField
-                                    control={form.control}
-                                    name="recover_trigger_tasks_raw"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>
-                                                {t("TasksToTriggerAfterRecovery") +
-                                                    t("SeparateWithComma")}
-                                            </FormLabel>
-                                            <FormControl>
-                                                <Input placeholder="1,2,3" {...field} />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>

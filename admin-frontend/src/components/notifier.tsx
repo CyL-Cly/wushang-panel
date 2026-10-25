@@ -32,9 +32,9 @@ import {
 import { IconButton } from "@/components/xui/icon-button"
 import { asOptionalField } from "@/lib/utils"
 import { ModelNotification } from "@/types"
-import { nrequestMethods, nrequestTypes } from "@/types"
+import { nChannels, nrequestMethods, nrequestTypes } from "@/types"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { toast } from "sonner"
@@ -48,9 +48,17 @@ interface NotifierCardProps {
     mutate: KeyedMutator<ModelNotification[]>
 }
 
+const CHANNEL_WEBHOOK = 0
+const CHANNEL_DINGTALK = 1
+const CHANNEL_SERVERCHAN = 2
+
+// 凭据字段（url / dingtalk_webhook_url / serverchan_sendkey）在编辑时由后端
+// 列表接口脱敏为空串，前端无法回填；留空提交表示“不修改”。因此这些字段的
+// 必填校验在 onSubmit 里按是否为已有记录判断，schema 只做类型校验。
 const notificationFormSchema = z.object({
     name: z.string().min(1),
-    url: z.string().url(),
+    channel: z.coerce.number().int().min(0).max(2),
+    url: z.string(),
     request_method: z.coerce.number().int().min(1).max(255),
     request_type: z.coerce.number().int().min(1).max(255),
     request_header: z.string(),
@@ -58,6 +66,9 @@ const notificationFormSchema = z.object({
     verify_tls: asOptionalField(z.boolean()),
     skip_check: asOptionalField(z.boolean()),
     format_metric_units: asOptionalField(z.boolean()),
+    dingtalk_webhook_url: z.string(),
+    dingtalk_secret: z.string(),
+    serverchan_sendkey: z.string(),
 })
 
 export const NotifierCard: React.FC<NotifierCardProps> = ({ data, mutate }) => {
@@ -73,6 +84,7 @@ export const NotifierCard: React.FC<NotifierCardProps> = ({ data, mutate }) => {
         defaultValues: data
             ? {
                   name: data.name ?? "",
+                  channel: data.channel ?? CHANNEL_WEBHOOK,
                   url: data.url ?? "",
                   request_method: data.request_method ?? 1,
                   request_type: data.request_type ?? 1,
@@ -81,9 +93,13 @@ export const NotifierCard: React.FC<NotifierCardProps> = ({ data, mutate }) => {
                   verify_tls: data.verify_tls ?? false,
                   skip_check: notificationDefaults?.skip_check ?? false,
                   format_metric_units: data.format_metric_units ?? false,
+                  dingtalk_webhook_url: data.dingtalk_webhook_url ?? "",
+                  dingtalk_secret: data.dingtalk_secret ?? "",
+                  serverchan_sendkey: data.serverchan_sendkey ?? "",
               }
             : {
                   name: "",
+                  channel: CHANNEL_WEBHOOK,
                   url: "",
                   request_method: 1,
                   request_type: 1,
@@ -92,6 +108,9 @@ export const NotifierCard: React.FC<NotifierCardProps> = ({ data, mutate }) => {
                   verify_tls: false,
                   skip_check: false,
                   format_metric_units: false,
+                  dingtalk_webhook_url: "",
+                  dingtalk_secret: "",
+                  serverchan_sendkey: "",
               },
         resetOptions: {
             keepDefaultValues: false,
@@ -99,8 +118,44 @@ export const NotifierCard: React.FC<NotifierCardProps> = ({ data, mutate }) => {
     })
 
     const [open, setOpen] = useState(false)
+    const channel = form.watch("channel")
+
+    // 渠道切换时清掉不属于该渠道的字段，避免提交脏数据。
+    useEffect(() => {
+        const subscription = form.watch((_, { name: changed }) => {
+            if (changed === "channel") {
+                const current = form.getValues("channel")
+                if (current !== CHANNEL_WEBHOOK) {
+                    form.setValue("url", "")
+                    form.setValue("request_header", "")
+                    form.setValue("request_body", "")
+                }
+                if (current !== CHANNEL_DINGTALK) {
+                    form.setValue("dingtalk_webhook_url", "")
+                    form.setValue("dingtalk_secret", "")
+                }
+                if (current !== CHANNEL_SERVERCHAN) {
+                    form.setValue("serverchan_sendkey", "")
+                }
+            }
+        })
+        return () => subscription.unsubscribe()
+    }, [form])
 
     const onSubmit = async (values: NotificationFormData) => {
+        // 凭据字段：新建时必填；编辑时留空=沿用旧值（后端列表已脱敏）。
+        const isNew = !data?.id
+        if (
+            isNew &&
+            ((values.channel === CHANNEL_WEBHOOK && !values.url) ||
+                (values.channel === CHANNEL_DINGTALK && !values.dingtalk_webhook_url) ||
+                (values.channel === CHANNEL_SERVERCHAN && !values.serverchan_sendkey))
+        ) {
+            toast(t("Error"), {
+                description: t("Results.UnExpectedError"),
+            })
+            return
+        }
         try {
             if (data?.id) {
                 await updateNotification(data.id, values)
@@ -118,6 +173,10 @@ export const NotifierCard: React.FC<NotifierCardProps> = ({ data, mutate }) => {
         await mutate()
         form.reset()
     }
+
+    const isWebhook = channel === CHANNEL_WEBHOOK
+    const isDingtalk = channel === CHANNEL_DINGTALK
+    const isServerchan = channel === CHANNEL_SERVERCHAN
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
@@ -150,37 +209,26 @@ export const NotifierCard: React.FC<NotifierCardProps> = ({ data, mutate }) => {
                                 />
                                 <FormField
                                     control={form.control}
-                                    name="url"
+                                    name="channel"
                                     render={({ field }) => (
                                         <FormItem>
-                                            <FormLabel>URL</FormLabel>
-                                            <FormControl>
-                                                <Input {...field} />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                                <FormField
-                                    control={form.control}
-                                    name="request_method"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>{t("RequestMethod")}</FormLabel>
+                                            <FormLabel>{t("NotificationChannel")}</FormLabel>
                                             <Select
-                                                onValueChange={field.onChange}
-                                                defaultValue={`${field.value}`}
+                                                onValueChange={(v) => field.onChange(Number(v))}
+                                                value={`${field.value}`}
                                             >
                                                 <FormControl>
                                                     <SelectTrigger>
-                                                        <SelectValue placeholder="Request Method" />
+                                                        <SelectValue
+                                                            placeholder={t("NotificationChannel")}
+                                                        />
                                                     </SelectTrigger>
                                                 </FormControl>
                                                 <SelectContent>
-                                                    {Object.entries(nrequestMethods).map(
+                                                    {Object.entries(nChannels).map(
                                                         ([k, v]) => (
                                                             <SelectItem key={k} value={k}>
-                                                                {v}
+                                                                {t(`Channel${v}`)}
                                                             </SelectItem>
                                                         ),
                                                     )}
@@ -190,87 +238,193 @@ export const NotifierCard: React.FC<NotifierCardProps> = ({ data, mutate }) => {
                                         </FormItem>
                                     )}
                                 />
-                                <FormField
-                                    control={form.control}
-                                    name="request_type"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>{t("Type")}</FormLabel>
-                                            <Select
-                                                onValueChange={field.onChange}
-                                                defaultValue={`${field.value}`}
-                                            >
+                                {isDingtalk && (
+                                    <>
+                                        <FormField
+                                            control={form.control}
+                                            name="dingtalk_webhook_url"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormLabel>
+                                                        {t("DingtalkWebhookURL")}
+                                                    </FormLabel>
+                                                    <FormControl>
+                                                        <Input
+                                                            placeholder="https://oapi.dingtalk.com/robot/send?access_token=..."
+                                                            {...field}
+                                                        />
+                                                    </FormControl>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        />
+                                        <FormField
+                                            control={form.control}
+                                            name="dingtalk_secret"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormLabel>
+                                                        {t("DingtalkSecret")}
+                                                    </FormLabel>
+                                                    <FormControl>
+                                                        <Input
+                                                            placeholder="SEC... (optional)"
+                                                            {...field}
+                                                        />
+                                                    </FormControl>
+                                                    <FormMessage />
+                                                    <p className="text-sm text-muted-foreground">
+                                                        {t("DingtalkKeywordHint")}
+                                                    </p>
+                                                </FormItem>
+                                            )}
+                                        />
+                                    </>
+                                )}
+                                {isServerchan && (
+                                    <FormField
+                                        control={form.control}
+                                        name="serverchan_sendkey"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>{t("ServerchanSendKey")}</FormLabel>
                                                 <FormControl>
-                                                    <SelectTrigger>
-                                                        <SelectValue placeholder="Request Type" />
-                                                    </SelectTrigger>
+                                                    <Input placeholder="SCT..." {...field} />
                                                 </FormControl>
-                                                <SelectContent>
-                                                    {Object.entries(nrequestTypes).map(([k, v]) => (
-                                                        <SelectItem key={k} value={k}>
-                                                            {v}
-                                                        </SelectItem>
-                                                    ))}
-                                                </SelectContent>
-                                            </Select>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                                <FormField
-                                    control={form.control}
-                                    name="request_header"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>{t("RequestHeader")}</FormLabel>
-                                            <FormControl>
-                                                <Textarea
-                                                    className="resize-y"
-                                                    placeholder='{"User-Agent":"Nezha-Agent"}'
-                                                    {...field}
-                                                />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                                <FormField
-                                    control={form.control}
-                                    name="request_body"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>{t("RequestBody")}</FormLabel>
-                                            <FormControl>
-                                                <Textarea
-                                                    className="resize-y h-[240px]"
-                                                    placeholder='{&#13;&#10;  "content":"#NEZHA#",&#13;&#10;  "ServerName":"#SERVER.NAME#",&#13;&#10;  "ServerIP":"#SERVER.IP#",&#13;&#10;  "ServerIPV4":"#SERVER.IPV4#",&#13;&#10;  "ServerIPV6":"#SERVER.IPV6#",&#13;&#10;  "CPU":"#SERVER.CPU#",&#13;&#10;  "MEM":"#SERVER.MEM#",&#13;&#10;  "SWAP":"#SERVER.SWAP#",&#13;&#10;  "DISK":"#SERVER.DISK#",&#13;&#10;  "NetInSpeed":"#SERVER.NETINSPEED#",&#13;&#10;  "NetOutSpeed":"#SERVER.NETOUTSPEED#",&#13;&#10;  "TransferIn":"#SERVER.TRANSFERIN#",&#13;&#10;  "TranferOut":"#SERVER.TRANSFEROUT#",&#13;&#10;  "Load1":"#SERVER.LOAD1#",&#13;&#10;  "Load5":"#SERVER.LOAD5#",&#13;&#10;  "Load15":"#SERVER.LOAD15#",&#13;&#10;  "TCP_CONN_COUNT":"#SERVER.TCPCONNCOUNT",&#13;&#10;  "UDP_CONN_COUNT":"#SERVER.UDPCONNCOUNT"&#13;&#10;}'
-                                                    {...field}
-                                                />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                                <FormField
-                                    control={form.control}
-                                    name="verify_tls"
-                                    render={({ field }) => (
-                                        <FormItem className="flex items-center space-x-2">
-                                            <FormControl>
-                                                <div className="flex items-center gap-2">
-                                                    <Checkbox
-                                                        checked={field.value === true}
-                                                        onCheckedChange={field.onChange}
-                                                    />
-                                                    <Label className="text-sm">
-                                                        {t("VerifyTLS")}
-                                                    </Label>
-                                                </div>
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                )}
+                                {isWebhook && (
+                                    <>
+                                        <FormField
+                                            control={form.control}
+                                            name="url"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormLabel>URL</FormLabel>
+                                                    <FormControl>
+                                                        <Input {...field} />
+                                                    </FormControl>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        />
+                                        <FormField
+                                            control={form.control}
+                                            name="request_method"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormLabel>{t("RequestMethod")}</FormLabel>
+                                                    <Select
+                                                        onValueChange={field.onChange}
+                                                        defaultValue={`${field.value}`}
+                                                    >
+                                                        <FormControl>
+                                                            <SelectTrigger>
+                                                                <SelectValue placeholder="Request Method" />
+                                                            </SelectTrigger>
+                                                        </FormControl>
+                                                        <SelectContent>
+                                                            {Object.entries(nrequestMethods).map(
+                                                                ([k, v]) => (
+                                                                    <SelectItem key={k} value={k}>
+                                                                        {v}
+                                                                    </SelectItem>
+                                                                ),
+                                                            )}
+                                                        </SelectContent>
+                                                    </Select>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        />
+                                        <FormField
+                                            control={form.control}
+                                            name="request_type"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormLabel>{t("Type")}</FormLabel>
+                                                    <Select
+                                                        onValueChange={field.onChange}
+                                                        defaultValue={`${field.value}`}
+                                                    >
+                                                        <FormControl>
+                                                            <SelectTrigger>
+                                                                <SelectValue placeholder="Request Type" />
+                                                            </SelectTrigger>
+                                                        </FormControl>
+                                                        <SelectContent>
+                                                            {Object.entries(nrequestTypes).map(
+                                                                ([k, v]) => (
+                                                                    <SelectItem key={k} value={k}>
+                                                                        {v}
+                                                                    </SelectItem>
+                                                                ),
+                                                            )}
+                                                        </SelectContent>
+                                                    </Select>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        />
+                                        <FormField
+                                            control={form.control}
+                                            name="request_header"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormLabel>{t("RequestHeader")}</FormLabel>
+                                                    <FormControl>
+                                                        <Textarea
+                                                            className="resize-y"
+                                                            placeholder='{"User-Agent":"Nezha-Agent"}'
+                                                            {...field}
+                                                        />
+                                                    </FormControl>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        />
+                                        <FormField
+                                            control={form.control}
+                                            name="request_body"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormLabel>{t("RequestBody")}</FormLabel>
+                                                    <FormControl>
+                                                        <Textarea
+                                                            className="resize-y h-[240px]"
+                                                            placeholder='{&#13;&#10;  "content":"#NEZHA#",&#13;&#10;  "ServerName":"#SERVER.NAME#",&#13;&#10;  "ServerIP":"#SERVER.IP#",&#13;&#10;  "ServerIPV4":"#SERVER.IPV4#",&#13;&#10;  "ServerIPV6":"#SERVER.IPV6#",&#13;&#10;  "CPU":"#SERVER.CPU#",&#13;&#10;  "MEM":"#SERVER.MEM#",&#13;&#10;  "SWAP":"#SERVER.SWAP#",&#13;&#10;  "DISK":"#SERVER.DISK#",&#13;&#10;  "NetInSpeed":"#SERVER.NETINSPEED#",&#13;&#10;  "NetOutSpeed":"#SERVER.NETOUTSPEED#",&#13;&#10;  "TransferIn":"#SERVER.TRANSFERIN#",&#13;&#10;  "TranferOut":"#SERVER.TRANSFEROUT#",&#13;&#10;  "Load1":"#SERVER.LOAD1#",&#13;&#10;  "Load5":"#SERVER.LOAD5#",&#13;&#10;  "Load15":"#SERVER.LOAD15#",&#13;&#10;  "TCP_CONN_COUNT":"#SERVER.TCPCONNCOUNT",&#13;&#10;  "UDP_CONN_COUNT":"#SERVER.UDPCONNCOUNT"&#13;&#10;}'
+                                                            {...field}
+                                                        />
+                                                    </FormControl>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        />
+                                        <FormField
+                                            control={form.control}
+                                            name="verify_tls"
+                                            render={({ field }) => (
+                                                <FormItem className="flex items-center space-x-2">
+                                                    <FormControl>
+                                                        <div className="flex items-center gap-2">
+                                                            <Checkbox
+                                                                checked={field.value === true}
+                                                                onCheckedChange={field.onChange}
+                                                            />
+                                                            <Label className="text-sm">
+                                                                {t("VerifyTLS")}
+                                                            </Label>
+                                                        </div>
+                                                    </FormControl>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        />
+                                    </>
+                                )}
                                 <FormField
                                     control={form.control}
                                     name="skip_check"
@@ -291,26 +445,28 @@ export const NotifierCard: React.FC<NotifierCardProps> = ({ data, mutate }) => {
                                         </FormItem>
                                     )}
                                 />
-                                <FormField
-                                    control={form.control}
-                                    name="format_metric_units"
-                                    render={({ field }) => (
-                                        <FormItem className="flex items-center space-x-2">
-                                            <FormControl>
-                                                <div className="flex items-center gap-2">
-                                                    <Checkbox
-                                                        checked={field.value === true}
-                                                        onCheckedChange={field.onChange}
-                                                    />
-                                                    <Label className="text-sm">
-                                                        {t("FormatMetricUnits")}
-                                                    </Label>
-                                                </div>
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
+                                {isWebhook && (
+                                    <FormField
+                                        control={form.control}
+                                        name="format_metric_units"
+                                        render={({ field }) => (
+                                            <FormItem className="flex items-center space-x-2">
+                                                <FormControl>
+                                                    <div className="flex items-center gap-2">
+                                                        <Checkbox
+                                                            checked={field.value === true}
+                                                            onCheckedChange={field.onChange}
+                                                        />
+                                                        <Label className="text-sm">
+                                                            {t("FormatMetricUnits")}
+                                                        </Label>
+                                                    </div>
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                )}
                                 <DialogFooter className="justify-end">
                                     <DialogClose asChild>
                                         <Button type="button" className="my-2" variant="secondary">

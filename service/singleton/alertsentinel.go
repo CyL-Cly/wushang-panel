@@ -139,10 +139,6 @@ func startAlertDelivery(alert *model.AlertRule, server *model.Server, message, m
 	}()
 }
 
-func shouldRunAlertFailTasks(triggerMode uint8, newIncident bool) bool {
-	return newIncident || triggerMode == model.ModeAlwaysTrigger
-}
-
 // addCycleTransferStatsInfo 向AlertsCycleTransferStatsStore中添加周期流量报警统计信息
 func addCycleTransferStatsInfo(alert *model.AlertRule) {
 	if alert == nil || !alert.Enabled() || !alert.IsSafeToEvaluate() {
@@ -362,15 +358,11 @@ func checkStatusForServer(alert *model.AlertRule, server *model.Server) {
 				server.Name, IPDesensitize(server.GeoIP.IP.Join()), alert.Name)
 			startAlertDelivery(alert, &curServer, message, NotificationMuteLabel.ServerIncident(server.ID, alert.ID), alertDeliveryIncident)
 		}
-		if shouldRunAlertFailTasks(alert.TriggerMode, newIncident) {
-			go CronShared.SendTriggerTasks(alert.FailTriggerTasks, curServer.ID, alert.UserID)
-		}
 	} else {
 		// 本次通过检查但上一次的状态为失败，则发送恢复通知
 		if alertsPrevState[alert.ID][server.ID] == _RuleCheckFail {
 			message := fmt.Sprintf("[%s] %s(%s) %s", Localizer.T("Resolved"),
 				server.Name, IPDesensitize(server.GeoIP.IP.Join()), alert.Name)
-			go CronShared.SendTriggerTasks(alert.RecoverTriggerTasks, curServer.ID, alert.UserID)
 			startAlertDelivery(alert, &curServer, message, NotificationMuteLabel.ServerIncidentResolved(server.ID, alert.ID), alertDeliveryRecovery)
 		}
 		alertsPrevState[alert.ID][server.ID] = _RuleCheckPass

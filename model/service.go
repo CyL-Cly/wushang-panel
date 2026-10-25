@@ -239,13 +239,7 @@ type Service struct {
 	NotificationGroupID uint64 `json:"notification_group_id"` // 当前服务监控所属的通知组 ID
 	Cover               uint8  `json:"cover"`
 
-	EnableTriggerTask      bool   `gorm:"default: false" json:"enable_trigger_task,omitempty"`
-	HideForGuest           bool   `json:"hide_for_guest,omitempty"` // 对游客隐藏
-	FailTriggerTasksRaw    string `gorm:"default:'[]'" json:"-"`
-	RecoverTriggerTasksRaw string `gorm:"default:'[]'" json:"-"`
-
-	FailTriggerTasks    []uint64 `gorm:"-" json:"fail_trigger_tasks"`    // 失败时执行的触发任务id
-	RecoverTriggerTasks []uint64 `gorm:"-" json:"recover_trigger_tasks"` // 恢复时执行的触发任务id
+	HideForGuest   bool `json:"hide_for_guest,omitempty"` // 对游客隐藏
 
 	MinLatency    float32 `json:"min_latency"`
 	MaxLatency    float32 `json:"max_latency"`
@@ -335,16 +329,6 @@ func (m *Service) BeforeSave(tx *gorm.DB) error {
 	} else {
 		m.SkipServersRaw = string(data)
 	}
-	if data, err := json.Marshal(m.FailTriggerTasks); err != nil {
-		return err
-	} else {
-		m.FailTriggerTasksRaw = string(data)
-	}
-	if data, err := json.Marshal(m.RecoverTriggerTasks); err != nil {
-		return err
-	} else {
-		m.RecoverTriggerTasksRaw = string(data)
-	}
 	return nil
 }
 
@@ -354,15 +338,6 @@ func (m *Service) AfterFind(tx *gorm.DB) error {
 		log.Println("NEZHA>> Service.AfterFind:", err)
 		return nil
 	}
-
-	// 加载触发任务列表
-	if err := json.Unmarshal([]byte(m.FailTriggerTasksRaw), &m.FailTriggerTasks); err != nil {
-		return err
-	}
-	if err := json.Unmarshal([]byte(m.RecoverTriggerTasksRaw), &m.RecoverTriggerTasks); err != nil {
-		return err
-	}
-
 	return nil
 }
 

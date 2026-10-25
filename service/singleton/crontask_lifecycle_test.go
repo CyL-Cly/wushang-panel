@@ -16,7 +16,7 @@ func TestCronClassClose_waitsForRunningJobs(t *testing.T) {
 	started := make(chan struct{})
 	release := make(chan struct{})
 	events := make(chan string, 9)
-	cronClass := &CronClass{Cron: cron.New(cron.WithSeconds())}
+	cronClass := &CronClass{Cron: cron.New(cron.WithSeconds(), cron.WithLocation(time.UTC))}
 	_, err := cronClass.AddFunc("@every 1ns", func() {
 		defer func() { events <- "job" }()
 		close(started)
@@ -53,7 +53,7 @@ func TestCronClassClose_waitsForRunningJobs(t *testing.T) {
 }
 
 func TestCronClassClose_isIdempotentAndNilSafe(t *testing.T) {
-	cronClass := &CronClass{Cron: cron.New(cron.WithSeconds())}
+	cronClass := &CronClass{Cron: cron.New(cron.WithSeconds(), cron.WithLocation(time.UTC))}
 	cronClass.Start()
 
 	closed := make(chan struct{})

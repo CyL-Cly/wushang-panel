@@ -92,16 +92,6 @@ export default function AlertRulePage() {
             },
         },
         {
-            header: t("TasksToTriggerOnAlert"),
-            accessorKey: "failTriggerTasks",
-            accessorFn: (row) => row.fail_trigger_tasks,
-        },
-        {
-            header: t("TasksToTriggerAfterRecovery"),
-            accessorKey: "recoverTriggerTasks",
-            accessorFn: (row) => row.recover_trigger_tasks,
-        },
-        {
             header: t("Enable"),
             accessorKey: "enable",
             accessorFn: (row) => row.enable,

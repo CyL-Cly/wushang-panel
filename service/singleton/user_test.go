@@ -2,6 +2,7 @@ package singleton
 
 import (
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/require"
 
@@ -13,11 +14,13 @@ func setupOnUserDeleteFixture(t *testing.T) (*ServerTransferClass, func()) {
 	t.Helper()
 	c, transferCleanup := setupTransferFixture(t)
 
-	require.NoError(t, DB.AutoMigrate(&model.Cron{}, &model.Transfer{}, &model.ServerGroupServer{}))
+	require.NoError(t, DB.AutoMigrate(&model.Transfer{}, &model.ServerGroupServer{}))
 	originalCronShared := CronShared
-	CronShared = &CronClass{
-		class: class[uint64, *model.Cron]{list: map[uint64]*model.Cron{}},
+	originalLoc := Loc
+	if Loc == nil {
+		Loc = time.UTC
 	}
+	CronShared = NewCronClass()
 
 	originalLocalizer := Localizer
 	Localizer = i18n.NewLocalizer("zh_CN", domain, "translations", i18n.Translations)
@@ -25,6 +28,7 @@ func setupOnUserDeleteFixture(t *testing.T) (*ServerTransferClass, func()) {
 	cleanup := func() {
 		Localizer = originalLocalizer
 		CronShared = originalCronShared
+		Loc = originalLoc
 		transferCleanup()
 	}
 	return c, cleanup

@@ -1,3 +1,11 @@
 {
-    "nezha": "Nezha Monitoramento"
+    "nezha": "Nezha Monitoramento",
+    "NotificationChannel": "Notification Channel",
+    "ChannelWebhook": "Webhook",
+    "ChannelDingTalk": "DingTalk Robot",
+    "ChannelServerChan": "ServerChan",
+    "DingtalkWebhookURL": "DingTalk Webhook URL",
+    "DingtalkSecret": "DingTalk Signing Secret (optional)",
+    "ServerchanSendKey": "ServerChan SendKey",
+    "DingtalkKeywordHint": "Note: set the DingTalk robot custom keyword to #NEZHA#, or enable signing and fill in the secret"
 }

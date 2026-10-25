@@ -99,11 +99,6 @@ export const SCOPE_OPTIONS = [
     },
     { value: "nezha:alertrule:delete", label: "Alert rule: delete", desc: "Delete alert rules" },
     { value: "nezha:alertrule:*", label: "Alert rule: all", desc: "Every alert-rule permission" },
-    { value: "nezha:cron:read", label: "Cron: read", desc: "List scheduled tasks" },
-    { value: "nezha:cron:write", label: "Cron: write", desc: "Create / edit scheduled tasks" },
-    { value: "nezha:cron:delete", label: "Cron: delete", desc: "Delete scheduled tasks" },
-    { value: "nezha:cron:exec", label: "Cron: trigger", desc: "Manually trigger scheduled tasks" },
-    { value: "nezha:cron:*", label: "Cron: all", desc: "Every cron permission" },
     { value: "nezha:notification:read", label: "Notification: read", desc: "List notifications" },
     {
         value: "nezha:notification:write",

@@ -130,21 +130,6 @@ export default function ServicePage() {
             accessorFn: (row) => row.notification_group_id,
         },
         {
-            header: t("Trigger"),
-            accessorKey: "triggerTask",
-            accessorFn: (row) => row.enable_trigger_task ?? false,
-        },
-        {
-            header: t("TasksToTriggerOnAlert"),
-            accessorKey: "failTriggerTasks",
-            accessorFn: (row) => row.fail_trigger_tasks,
-        },
-        {
-            header: t("TasksToTriggerAfterRecovery"),
-            accessorKey: "recoverTriggerTasks",
-            accessorFn: (row) => row.recover_trigger_tasks,
-        },
-        {
             id: "actions",
             header: t("Actions"),
             cell: ({ row }) => {

@@ -36,7 +36,6 @@ func setupTenancyTest(t *testing.T) func() {
 	require.NoError(t, err)
 	require.NoError(t, db.AutoMigrate(
 		&model.User{},
-		&model.Cron{},
 		&model.DDNSProfile{},
 		&model.Notification{},
 		&model.AlertRule{},
@@ -82,38 +81,6 @@ func ctxAsMemberWithBody(uid uint64, body any) *gin.Context {
 // 在单元测试中难以无副作用地完整运行；改用代码静态约束：在 form_no_userid_test.go
 // 里用 reflect 验证所有 *Form 结构无 UserID 字段（next step）。
 // 这里只测真正的所有权防线：update / delete。
-
-// ---------- Cron ----------
-
-func TestTenancy_UpdateCron_ForeignOwnerRejected(t *testing.T) {
-	defer setupTenancyTest(t)()
-
-	foreign := model.Cron{
-		Common:    model.Common{UserID: 999},
-		Name:      "foreign-cron",
-		TaskType:  model.CronTypeCronTask,
-		Scheduler: "@every 5m",
-		Command:   "echo",
-	}
-	require.NoError(t, singleton.DB.Create(&foreign).Error)
-
-	c := ctxAsMemberWithBody(10, map[string]any{
-		"name":      "hijacked",
-		"task_type": model.CronTypeCronTask,
-		"scheduler": "@every 1m",
-		"command":   "echo pwned",
-		"servers":   []uint64{},
-		"cover":     model.CronCoverAll,
-	})
-	c.Params = gin.Params{{Key: "id", Value: itoa(foreign.ID)}}
-	_, err := updateCron(c)
-	require.Error(t, err, "member 10 must not be able to update foreign-owned cron")
-
-	var after model.Cron
-	require.NoError(t, singleton.DB.First(&after, foreign.ID).Error)
-	require.Equal(t, "foreign-cron", after.Name, "foreign cron must not be modified")
-	require.Equal(t, uint64(999), after.UserID, "ownership must remain")
-}
 
 // ---------- DDNS ----------
 
@@ -290,11 +257,6 @@ func TestTenancy_BatchDeleteAlertRule_ForeignOwnerSilentlySkipped(t *testing.T) 
 		"member's batch-delete must not be able to remove foreign alert rule")
 	require.Equal(t, uint64(999), after.UserID)
 }
-
-// Cron batch-delete 的所有权保护与 updateCron 共用 cr.HasPermission 检查路径
-// （cron.go:127 vs cron.go:207），updateCron 用例已经覆盖该路径。这里不复测
-// 是因为 batchDeleteCron 调 CronShared.CheckPermission，需要完整 CronShared
-// 在内存中注册，会让单测 fixture 显著膨胀，性价比低。
 
 // ---------- Notification batch-delete ----------
 

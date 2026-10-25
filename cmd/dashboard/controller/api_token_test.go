@@ -568,7 +568,6 @@ func TestCreateAPIToken_AcceptsResourceWildcardScopes(t *testing.T) {
 	cases := []string{
 		"nezha:server:*",
 		"nezha:service:*",
-		"nezha:cron:*",
 		"nezha:transfer:*",
 	}
 	for _, scope := range cases {

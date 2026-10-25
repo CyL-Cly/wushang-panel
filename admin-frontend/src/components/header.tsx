@@ -44,7 +44,6 @@ import { NzNavigationMenuLink } from "./xui/navigation-menu"
 const pages = [
     { href: "/dashboard", label: i18next.t("Server") },
     { href: "/dashboard/service", label: i18next.t("Service") },
-    { href: "/dashboard/cron", label: i18next.t("Task") },
     { href: "/dashboard/notification", label: i18next.t("Notification") },
     { href: "/dashboard/ddns", label: i18next.t("DDNS") },
     { href: "/dashboard/nat", label: i18next.t("NATT") },
@@ -196,15 +195,6 @@ export default function Header() {
                                     className={navigationMenuTriggerStyle()}
                                 >
                                     <Link to="/dashboard/service">{t("Service")}</Link>
-                                </NzNavigationMenuLink>
-                            </NavigationMenuItem>
-                            <NavigationMenuItem>
-                                <NzNavigationMenuLink
-                                    asChild
-                                    active={location.pathname === "/dashboard/cron"}
-                                    className={navigationMenuTriggerStyle()}
-                                >
-                                    <Link to="/dashboard/cron">{t("Task")}</Link>
                                 </NzNavigationMenuLink>
                             </NavigationMenuItem>
                             <NavigationMenuItem>
